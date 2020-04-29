@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gold - Membership Direct</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style>
+
+    .top-link{
+    margin-left: 11%;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    }
+
+    .nav-link{
+        color: black;
+    }
+
+    .tab-body-text{
+        font-size: 1.1em;
+    }
+
+    
+
+    #more-info-tabs{
+        font-size: 1.5em;
+    }
+
+    #sign-up{
+        margin-top: 10em;
+        margin-bottom: 5em;
+        text-align: center;
+    }
+
+    ul{
+        list-style-type: none;
+        font-size: 1.75em;
+    }
+
+    li{
+        margin-top: 1em;
+    }
+
+    h1{
+        text-align: center;
+        font-size: 3em;
+    }
+
+  </style>
+</head>
+
+<body>
+    <br />
+    <div class="top-link">
+      <a href="home-page.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Security Coverage</h6></a>
+    </div><br />
+  
+    <!--------------- Membership Overview ------------------>
+    <br />
+    <div class="container">
+        <h1>Gold Membership</h1>
+        <br/><br/>
+        <div id="breakdown">
+            <ul class="bullets">
+                <li><i class="material-icons">monetization_on</i> $191.88 / year</li>
+                <li><i class="material-icons">payment</i> Breaks down to $15.99 / month</li>
+                <li><i class="material-icons">arrow_forward</i> 3 claims per year, or $1000 in deductible fees. Whichever comes first.</li>
+            </ul>
+        </div>
+
+        <!--------------- More Info Tabs ------------------>
+        <br/><br/><br/>
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="more-info-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#how">How It Works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#cust-resp">Customer Responsibility</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#rec-serv">Receiving Services</a>
+                </li>
+            </ul>
+        
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="how" class="container tab-pane active"><br>
+                    <p class="tab-body-text">The Silver Membership plan provides payment for out of pocket deductibles totaling $1000 or up to 3 claims per year, 
+                        whichever comes first. When an accident occurs and auto-body repairs are required, Membership Direct will provide 
+                        payment directly to the customer’s auto-body repair shop of choice. Membership Direct works as an additional service 
+                        to existing car insurance providers; therefor it is required that an existing claim be filed and approved through the 
+                        member’s insurance provider before receiving services through Membership Direct.
+                    </p>
+                </div>
+                <div id="cust-resp" class="container tab-pane fade"><br>
+                    <p class="tab-body-text">It is the customer’s responsibility to report all accidents to their insurance providers and Membership Direct before 
+                        receiving any services outlined in their membership. Membership Direct will not provide payment for any services if a 
+                        claim has not been filed and approved through their car insurance provider prior to requesting coverage for their out 
+                        of pocket deductibles. Once a claim has been successfully processed, through their insurance providers, members will 
+                        utilize their online portal to submit their claims and request for payment through Membership Direct. Step by step we 
+                        will guide you through the required documents and provide updates, via email, as your claim is processed and payments 
+                        dispersed to the appropriate auto shop.
+                    </p>
+                </div>
+                <div id="rec-serv" class="container tab-pane fade"><br>
+                    <p class="tab-body-text">Membership services, in the form of deductible payments, will be provided directly to the auto-body shop specified in 
+                        the customer’s claim. Members may check their online portal at any time to track the progress as payments are processed 
+                        and dispersed. In addition, members can opt for email updates that will notify them of any changes or if additional 
+                        documents or information is needed to process a claim.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign Up Button -->
+        <div id="sign-up">
+            <a href="sign-up.html" class="btn btn-primary btn-lg" onclick="login()">Sign Up</a>
+        </div>
+
+    </div>
+</body>
+
+</html>
