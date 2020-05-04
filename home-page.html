@@ -17,6 +17,8 @@ Version:    2.0
   <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> <!-- Top Link -->
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"> <!-- Image Text Small -->
   <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet"> <!-- Image Text Large -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> <!-- Sans Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Google Icons -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -95,6 +97,15 @@ Version:    2.0
     position: relative;
   }
 
+  .footer-image{
+    background-image: url("img/home_page_footer.jpg");
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
   .card{
       margin-top: 10%;
   }
@@ -110,6 +121,37 @@ Version:    2.0
   .btn{
       background-color: #2b6f94;
   }
+
+  .flex-container {
+		display: flex;
+		flex-wrap: no-wrap;
+        /* flex-flow: row wrap; */
+        justify-content: center;
+        margin-left: 20%;
+        margin-right: 18%;
+	}
+
+    #client-container{
+        margin-right: 10px;
+    }
+
+    #client-text{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+
+    #footer-card{
+        padding-top: 2px;
+    }
+
+    /* #footer-card-body{
+        padding: 40px;
+    } */
+
+    #contact-us{
+        margin-right: 50px;
+    }
+
 
   </style>
 </head>
@@ -129,13 +171,13 @@ Version:    2.0
     <center>
     <div class="services">
     <p>GET TO KNOW US</p><br />
-    <h1>Our Services</h1><br />
+    <h1 id="our-services">Our Services</h1><br />
     <h5>
         We offer 2 service plans that provide hassle free solutions for covering out of pocket deductibles on existing 
         car insurance claims. Click on one of our services below to learn more about becoming a member today!
     </h5><br /><br />
 
-        <!--------------------------- Membership Cards - Links --------------------------->
+        <!-- Membership Cards - Links -->
         <div class="container" id="card-services">
             <div class="card-deck">
                 <div class="card" style="width: 100%;">
@@ -160,11 +202,11 @@ Version:    2.0
     </div><br /><br />
     </center>
 
-  <!----------------------- Road Image - More Info Section --------------------------->
+  <!-- Road Image - More Info Section -->
   <br /><br />
     <div class="road-image">
         <div class="more-info">
-            <div class="container" id="card-info">
+            <div class="container-fluid" id="card-info">
                 <div class="card-deck">
                     <div class="card" style="width: 100%;">
                         <div class="card-body text-center">
@@ -177,7 +219,7 @@ Version:    2.0
                                 costs before their insurance provider begins contributions. We provide our 
                                 members financial security and peace of mind by covering deductible costs 
                                 with respect to their membership status. We are reshaping the auto industry, 
-                                and want to take you along for the ride.
+                                and want to take you along for the ride!
                             </h5>
 
                             <!-- Collapse Menu -->
@@ -191,8 +233,8 @@ Version:    2.0
                                         </div>
                                         <div id="collapseOne" class="collapse" data-parent="#accordion">
                                             <div class="card-body">
-                                            We process claims within 48 hours of receipt. This ensure our members 
-                                            get on the road sooner and back to the things that matter most.
+                                            We process claims within 48 hours of receipt. This ensures our members 
+                                            get back on the road sooner and back to the things that matter most.
                                             </div>
                                         </div>
                                     </div>
@@ -245,8 +287,61 @@ Version:    2.0
                 </div>
             </div>
         </div><br /><br />
+    </div><br /><br /><br /><br />
+
+  <!-- Becoming Our Client -->
+    <div class="flex-container">
+            <div class="col" id="client-container">
+                <p id="info-text">BECOMING OUR CLIENT</p>
+                <h1 id="info-text">What you'll need to qualify</h1><br />
+
+                <div id="client-text">
+                    Becoming a member takes only a few minutes. Simply choose
+                    from 2 membership plans and make sure you have the following
+                    readily available.
+                </div><br/>
+                
+                <div class="container">
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Proof of Insurance</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Registered Operational Vehicle</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Valid Credit Card</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Current Billing Address</li>
+                    </ul><br/><br/>
+                    <a href="#our-services" class="btn btn-primary" id="internal-link">Ready To Join?</a>
+                </div>
+
+            </div>
+                
+            <div class="col">
+                <p id="info-text">NEWS</p>
+                <h1 id="info-text">Updates and Advice</h1><br />
+            </div>
+    </div><br /><br /><br /><br />
+
+    <!-- Footer -->
+    <div class="footer-image">
+        <div class="container" id="footer-card">
+            <div class="card" style="width: 100%;">
+                <div class="card-body" id="footer-card-body">
+                    <div class="flex-container" id="footer-flex">
+                        <div id="contact-us">
+                            <h1>Contact Us</h1>
+                            <i class="material-icons" style="color:#2b6f94">email</i> contact@membershipdirect.org
+                        </div>
+                        <div id="quick-resources">
+                            <h1>Quick Resources</h1>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">info</i> Request More Information</li>
+                                <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">work</i> Business Partners</li>
+                                <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">folder_open</i> Terms & Conditions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br/><br/>
     </div>
-  <!---------------------------------------------------------------------------------->
 
 </body>
 
