@@ -21,6 +21,10 @@
       text-align: center;
     }
 
+    .btn{
+      background-color: #2b6f94;
+    }
+
   </style>
 </head>
 
@@ -34,26 +38,28 @@
 
   <div class="container" id="sign-up-form">
     <h1>Sign Up</h1>
-    <form method="POST" class="needs-validated">
+    <form method="POST">
 
       <!-- Profile Info -->
       <div class="form-group" id="profile-info">
         <label for="profile-info">Enter Email & Password</label>
-        <input type="email" class="form-control" placeholder="Email" id="email" name="email">
-        <input type="password" class="form-control" placeholder="password" id="pswd" name="pswd">
-      </div>
+        <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
+        <input type="password" class="form-control" placeholder="Password" id="pswd" name="pswd" required>
+        <input type="password" class="form-control" placeholder="Verify Password" id="pswd-verify" name="pswd-verify" required>
+      </div><br /><br />
 
-      <!-- Billing Info -->
+      <!-- Contact Info -->
       <div class="form-group" id="personal-info">
-        <label for="billing-info">Enter Your Billing Information</label>
-        <input type="text" class="form-control" placeholder="First Name" id="first-name" name="first-name">
+        <label for="contact-info">Enter Your Contact Information</label>
+        <input type="text" class="form-control" placeholder="First Name" id="first-name" name="first-name" required>
+        <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="last-name" required>
+        <input type="text" class="form-control" placeholder="Address" id="address" name="address" required>
+        <input type="text" class="form-control" placeholder="State" id="state" name="state" required>
+        <input type="text" class="form-control" placeholder="Zip Code" id="zip" name="zip" required>
+        <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="contact-number" name="contact-number" required>
+      </div><br /><br />
 
-      </div>
-
-      <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
     </form>
   </div>
 </body>
