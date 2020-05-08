@@ -13,11 +13,15 @@
     a.nav-link:hover, a.nav-link:active{
         font-size: 150%;
     }
+
+    #claim-form{
+        text-align: center;
+    }
 </style>
 </head>
 
 <body>
-    <!------------------------------------------Nav Bar----------------------------------------------------->
+    <!-- Nav Bar -->
     <center>
         <img src="img/banner_1.jpg" alt="banner_unavail">
     </center>
@@ -46,10 +50,42 @@
             </ul>
         </div>
     </nav>
-    <!------------------------------------------------------------------------------------------------------>
-
+    
+    <!-- New Claim Form -->
     <br /><br />
-    <center><h1>This is the Submit Claims Webpage</h1></center>
+    <div class="container" id="claim-form">
+        <h2>File a new claim</h2><br/>
+
+        <form method="POST">
+
+            <!-- Choose Vehicle -->
+            <div class="form-group">
+                <label for="vehicle-choice">Choose Vehicle (select one):</label>
+                <select class="form-control" id="vehicle-choice" name="vehicle-choice">
+                    <option>Vehicle 1</option>
+                    <option>Vehicle 2</option>
+                    <option>Vehicle 3</option>
+                </select>
+            </div><br /><br />
+
+            <!-- Auto Shop Info -->
+            <div class="form-group" id="auto-shop-info">
+                <label for="auto-shop-name">Auto Body Information</label>
+                <input type="text" class="form-control" placeholder="Enter Auto Shop Name" id="auto-shop-name" name="auto-shop-name">
+                <input type="text" class="form-control" placeholder="Enter Billing Address" id="billing-address" name="billing-address">
+                <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="business-contact-number" name="business-contact-number">
+            </div><br /><br />
+
+            <!-- Upload Insurance Doc -->
+            <div class="form-group" id="upload-claim">
+                <label for="upload-claim-document">Upload proof of insurance claim</label>
+                <input type="file" class="form-control-file border" id="insurance-claim-doc" name="insurance-claim-doc">
+            </div><br /><br />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
 </body>
 
 </html>

@@ -4,18 +4,58 @@
   <title>Sign Up - Membership Direct</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   <style>
+
+    .top-link{
+    margin-left: 11%;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    }
+
+    h1{
+      text-align: center;
+    }
 
   </style>
 </head>
 
 <body>
 
+  <!-- Top Link -->
+  <br />
+  <div class="top-link">
+    <a href="home-page.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Security Coverage</h6></a>
+  </div><br /><br /><br />
+
+  <div class="container" id="sign-up-form">
+    <h1>Sign Up</h1>
+    <form method="POST" class="needs-validated">
+
+      <!-- Profile Info -->
+      <div class="form-group" id="profile-info">
+        <label for="profile-info">Enter Email & Password</label>
+        <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+        <input type="password" class="form-control" placeholder="password" id="pswd" name="pswd">
+      </div>
+
+      <!-- Billing Info -->
+      <div class="form-group" id="personal-info">
+        <label for="billing-info">Enter Your Billing Information</label>
+        <input type="text" class="form-control" placeholder="First Name" id="first-name" name="first-name">
+
+      </div>
+
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please fill out this field.</div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </body>
 
 </html>
