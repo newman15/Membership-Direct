@@ -9,46 +9,202 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<style>
-    a.nav-link:hover, a.nav-link:active{
-        font-size: 150%;
+ <style>
+	.column_left{
+		font-weight: bold;
+		margin-left: 15px;
+		margin-right: 20px;
+	}
+
+    .top-link{
+		margin-left: 11%;
+		font-family: 'Varela Round', sans-serif;
+		font-weight: bold;
     }
-</style>
+
+    .nav-link{
+        color: black;
+    }
+
+    .tab-body-text{
+        font-size: 1.1em;
+    }
+
+    
+
+    #more-info-tabs{
+        font-size: 1.5em;
+    }
+
+    #sign-up{
+        margin-top: 10em;
+        margin-bottom: 5em;
+        text-align: center;
+    }
+
+    .btn{
+      background-color: #2b6f94;
+    }
+
+    ul{
+        list-style-type: none;
+        font-size: 1.75em;
+    }
+
+    li{
+        margin-top: 1em;
+    }
+
+    h1{
+        text-align: center;
+        font-size: 3em;
+    }
+
+  </style>
 
 </head>
 
-<body>
-    <!------------------------------------------Nav Bar----------------------------------------------------->
-    <center><img src="img/banner_1.jpg" alt="banner_unavail"></center>
-    
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="member-portal.html" data-toggle="tooltip" title="Home">
-            <img src="img/mdLogo_dark.jpg" alt="logo" style="width:50px;">
-        </a>
-  
-        <!-- Creates Responsive Nav bar that collapses when resized to mobile dimensions -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav" style="list-style-type:none">
-                <li class="nav-item">
-                    <a class="nav-link" href="policy.html">Policy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="billing.html">Billing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">Account</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<body>    <br />
+    <div class="top-link">
+      <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Security Coverage</h6></a>
+    </div><br />
     <!------------------------------------------------------------------------------------------------------>
 
     <br /><br />
-    <center><h1>This is the Account Webpage</h1></center>
+    <center><h1>Account</h1></center>
+	
+	 <!--------------- More Info Tabs ------------------>
+        <br/><br/><br/>
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="more-info-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#about_me">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#payment">Billing & Payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#insurance">Insurance</a>
+                </li>
+            </ul>
+        
+            <!-- Tab panes -->
+            <div class="tab-content">
+			
+				<!-- About Me tab -->
+                <div id="about_me" class="container tab-pane active"><br>
+					<h3>Contact </h3>	
+					<div class="row">
+						<div class="column_left">
+							Full Name:			<br/>
+							Email Address:		<br/>
+							Phone Number:		<br/>
+							Home Address:		<br/>
+							State:				<br/>
+							Zip Code:			<br/>
+						</div>
+						<div class="column_right">
+							Jane Doe				<br/>
+							something@darkside.com	<br/>
+							808-555-0123			<br/>
+							1492 Columbus St		<br/>
+							CO						<br/>
+							12345					<br/>
+						</div>
+					</div>
+					<!-- TODO: Edit Contact Info button -->
+					
+					<br/><br/>
+					<h3>Membership</h3>
+					<div class="row">
+						<div class="column_left">
+							Member Type:		<br/>
+							Member Status:		<br/>
+						</div>
+						<div class="column_right">
+							Silver				<br/>
+							Active				<br/>
+						</div>
+					</div>
+                </div>
+				
+				<!-- Billing & Payment tab -->
+                <div id="payment" class="container tab-pane fade"><br>
+					<h3>Payment Status</h3>
+					<div class="row">
+						<div class="column_left">
+							Current Standing:	<br/>
+							Payment Due: 	<br/>
+						</div>
+						
+						<div class="column_right">
+							Good				<br/>
+							$121.64 (December 31, 2021)	<br/>
+						</div>
+					</div>
+					
+					<!-- TODO: Pay Now button -->
+					<br/><br/>
+					<!-- TODO: Add Card button -->
+					
+                    <div class="row">
+						<div class="column_left">
+							John (primary):		<br/><br/>
+							<br/>
+							Jane:				<br/><br/>
+							<br/>
+						</div>
+						
+						<div class="column_right">
+							VISA ending in 1234				<br/>
+							Exp: 3/2022				<br/>
+							<br/>
+							VISA ending in 5678		<br/>
+							Exp: 8/2021				<br/>
+							<br/>
+						</div>
+					</div>
+                </div>
+				
+				<!-- Insurance tab -->
+				<div id="insurance" class="container tab-pane fade"><br>
+					<h3>Insurance</h3>
+                    <div class="row">
+						<div class="column_left">
+							Provider:		<br/>
+							Policy Number:		<br/>
+							Number of Claims:		<br/>
+							Business ID:			<br/>
+						</div>
+						
+						<div class="column_right">
+							Geico				<br/>
+							1357				<br/>
+							5				<br/>
+							129512			<br/>
+						</div>
+					</div>
+					
+					<br/><br/>
+					<h3>Vehicle</h3>
+                    <div class="row">
+						<div class="column_left">
+							Make:		<br/>
+							Model:		<br/>
+							Year:		<br/>
+						</div>
+						
+						<div class="column_right">
+							Honda				<br/>
+							Acura				<br/>
+							2099				<br/>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+	
 </body>
 
 </html>
