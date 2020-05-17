@@ -5,9 +5,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <script src="functions.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $("#submit-btn").hide();
+      $("#agree-btn").click(function(){
+        $("#submit-btn").show();
+      });
+    });
+
+  </script>
 
   <style>
 
@@ -25,6 +39,19 @@
       background-color: #2b6f94;
     }
 
+    #membership-type label + label{
+      padding: 20px;
+    }
+
+    #terms-and-conditions{
+      text-align: center;
+    }
+
+    .modal-body embed{
+      width: 100%;
+      height: 400px;
+    }
+
   </style>
 </head>
 
@@ -37,10 +64,10 @@
   </div><br /><br /><br />
 
   <div class="container" id="sign-up-form">
-    <h1>Sign Up</h1>
+    <h1>Sign Up</h1><br /><br />
 
     <!-- Sign Up Form -->
-    <form method="POST" action="test.php">
+    <form method="POST" action="sign-up.php">
 
       <!-- Profile Info -->
       <div class="form-group" id="profile-info">
@@ -58,7 +85,7 @@
         <input type="text" class="form-control" placeholder="Address" id="address" name="address" required>
         <input type="text" class="form-control" placeholder="State" id="state" name="state" required>
         <input type="number" class="form-control" placeholder="Zip Code" id="zip" name="zip" required>
-        <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="contact-number" name="contact-number">
+        <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="contact-number" name="contact-number" required>
       </div><br /><br />
 
       <!-- Vehicle & Insurance Info -->
@@ -69,12 +96,12 @@
         <input type="number" class="form-control" placeholder="Vehicle Year" id="vehicle-year" name="vehicle-year" required>
         <input type="text" class="form-control" placeholder="Insurance Provider" id="insur-prov" name="insur-prov" required>
         <input type="number" class="form-control" placeholder="Policy Number" id="pol-num" name="pol-num" required>
-      </div><br /><br />
+      </div><br />
 
       <!-- Membership Type -->
       <div class="form-check-inline" id="membership-type">
         <label class="form-check-label" for="silver">
-          <input type="radio" class="form-check-input" id="silver" name="member-selection" value="Silver">Silver
+          <input type="radio" class="form-check-input" id="silver" name="member-selection" value="Silver" required>Silver
         </label>
 
         <label class="form-check-label" for="gold">
@@ -86,6 +113,42 @@
       <div class="form-group" id="business-id">
         <label for="business-id">Have a business ID? Enter it here:</label>
         <input type="number" class="form-control" placeholder="Business Id" id="bus-id" name="bus-id">
+      </div><br /><br />
+
+      <!-- Terms & Conditions -->
+      <div class="container" id="terms-and-conditions">
+
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#terms">
+          Terms & Conditions
+        </button>
+      
+        <!-- Terms Modal -->
+        <div class="modal fade" id="terms">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h1 class="modal-title">Membership Direct</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <embed src="docs/terms.pdf">
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="agree-btn" data-dismiss="modal" 
+                onclick="termsAgreeColor(); termsAgreeIcon()">I Agree</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <i class="material-icons" id="terms-agreement" style="color:red">report_problem</i>
       </div><br /><br />
 
       <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
