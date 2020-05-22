@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    // Import Nav Bar
+    require "includes/portal-nav.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,36 +28,6 @@
 </head>
 
 <body>
-    <!-- Nav Bar -->
-    <center>
-        <img src="img/banner_1.jpg" alt="banner_unavail">
-    </center>
-    
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="member-portal.html" data-toggle="tooltip" title="Home">
-            <img src="img/mdLogo_dark.jpg" alt="logo" style="width:50px;">
-        </a>
-  
-        <!-- Creates Responsive Nav bar that collapses when resized to mobile dimensions -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav" style="list-style-type:none">
-                <li class="nav-item">
-                    <a class="nav-link" href="policy.html">Policy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="billing.html">Billing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">Account</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
     <!-- New Claim Form -->
     <br /><br />
     <div class="container" id="claim-form">

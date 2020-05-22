@@ -56,7 +56,11 @@
 
         // Obtains user's membership choice and price associated
         $memberChoice = $formElements[10]; //User's member choice (Gold or Silver)
+
+        // Hashes User's Password
+        $formElements[7] = password_hash($formElements[7], PASSWORD_DEFAULT);
         
+        // Function that appends price and picture to card object
         function adjustPrice($memberChoice){
             $priceArray = array(0,"");
             if($memberChoice == "Silver"){
@@ -93,7 +97,7 @@
         </div>
         <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
         <script>
-        var payPalPrice = "<?php $memberCost[0] ?>";
+        var payPalPrice = "$memberCost[0]"; // Fills price on card based on user selection
         paypal.Buttons({
             style: {
                 shape: 'pill',
@@ -120,14 +124,11 @@
         </script>
         HTML;
 
-        // Database Connection
-        $serverName = "localhost";
-        $userName = "root";
-        $password = "A@n3w1515";
-
+        // DB Interaction
         try{
-            $dbh = new PDO("mysql:host=$serverName; dbname=membership_direct", $userName, $password);
-            echo "You have connected!";
+            // Connection to DB
+            require "includes/db-info.php";
+            $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
             echo "<br/><br/>";
             
             $stmt = $dbh->prepare("INSERT INTO member (first_name, last_name, address, state, zip_code, email, password, phone_number, member_status, 
@@ -139,11 +140,14 @@
             }
 
             $stmt->execute();
+            echo "Your account has been created, see below for next steps!";
             echo $DisplayPayPal;
+            $dbh = null;
+            $stmt = null;
 
         } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
             echo $stmt . "<br/>" . $e->getMessage();
-            exit();
+            die();
         }
 
     ?>

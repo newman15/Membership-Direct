@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    // Import Nav Bar
+    require "includes/portal-nav.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +17,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
  <style>
+    a.nav-link:hover, a.nav-link:active{
+        font-size: 150%;
+    }
+    
 	.column_left{
 		font-weight: bold;
 		margin-left: 15px;
@@ -30,29 +41,12 @@
         font-size: 1.1em;
     }
 
-    
-
     #more-info-tabs{
         font-size: 1.5em;
     }
 
-    #sign-up{
-        margin-top: 10em;
-        margin-bottom: 5em;
-        text-align: center;
-    }
-
     .btn{
       background-color: #2b6f94;
-    }
-
-    ul{
-        list-style-type: none;
-        font-size: 1.75em;
-    }
-
-    li{
-        margin-top: 1em;
     }
 
     h1{
@@ -65,10 +59,6 @@
 </head>
 
 <body>    <br />
-    <div class="top-link">
-      <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Security Coverage</h6></a>
-    </div><br />
-    <!------------------------------------------------------------------------------------------------------>
 
     <br /><br />
     <center><h1>Account</h1></center>
@@ -79,13 +69,13 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="more-info-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#about_me">About Me</a>
+                    <a class="nav-link active" id="nav-link" data-toggle="tab" href="#about_me">About Me</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#payment">Billing & Payment</a>
+                    <a class="nav-link" id="nav-link" data-toggle="tab" href="#payment">Billing & Payment</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#insurance">Insurance</a>
+                    <a class="nav-link" id="nav-link" data-toggle="tab" href="#insurance">Insurance</a>
                 </li>
             </ul>
         
