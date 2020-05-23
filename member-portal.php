@@ -8,7 +8,72 @@
     if(isset($_SESSION['sessionEmail'])){
 
         // Declare Session Variables
-        $userName = $_SESSION["sessionName"];
+        //$userName = $_SESSION["sessionName"];
+        $userEmail =  $_SESSION['sessionEmail'];
+
+        // Declare variables to be used in member portal tables
+        $firstName = "";
+        $lastName = "";
+        $nextPayDate = "Jan 1, 2021";
+        $accountNum = 0;
+        $memberType = "";
+        $accountStatus = false;
+
+        // DB Interaction
+        try{
+            // Connection to DB
+            require "includes/db-info.php";
+            $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
+            echo "<br/><br/>";
+            
+            // SQL Email Check
+            $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
+            $stmt->execute([$userEmail]);
+            $user = $stmt->fetch();
+
+            // Checks if DB returned any data at all
+            // If so, then compare passwords
+            if($user){
+                $firstName = $user['first_name'];
+                $lastName = $user['last_name'];
+                $accountNum = $user['member_id'];
+                $memberType = $user['member_type'];
+                $accountStatus = $user['member_status'];
+                $typeStatus = array("", "");
+                $actStatus = array("", "");
+
+                // Function to store member type/status
+                if ($memberType == "Silver"){
+                    $typeStatus[0] = "Silver";
+                    $typeStatus[1] = "&#128191;";
+                }
+                else if ($memberType == "Gold"){
+                    $typeStatus[0] = "Gold";
+                    $typeStatus[1] = "&#128192;";
+                }
+
+                // Function to store account type/status
+                if ($accountStatus == 0){
+                    $actStatus[0] = "Inactive";
+                    $actStatus[1] = "&#10060;";
+                }
+                else if ($accountStatus == 1){
+                    $actStatus[0] = "Active";
+                    $actStatus[1] = "&#9989;";
+                }
+
+            }
+            else{
+                echo "INVALID!";
+            }
+
+            $dbh = null;
+            $stmt = null;
+
+        } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
+            echo $stmt . "<br/>" . $e->getMessage();
+            die();
+        }
 
         // HTML Code
         echo <<<HTML
@@ -52,7 +117,7 @@
         <br />
         <!--Welcome Message-->
         <div id="welcome-message">
-            <center><h1>Welcome $userName</h1></center><br /><br /><br />
+            <center><h1>Welcome $firstName $lastName</h1></center><br /><br /><br />
         </div>
         <!-- Member Policy Table -->
         <center><h3>Account Overview</h3></center>
@@ -61,11 +126,11 @@
                         <tbody>
                             <tr>
                                 <th>Account Number:</th>
-                                <th>000001</th>
+                                <th>000$accountNum</th>
                             </tr>
                             <tr>
                                 <th>Membership Type:</th>
-                                <th>Gold &#128192;, Silver &#128191;</th>
+                                <th>$typeStatus[0] $typeStatus[1]</th>
                             </tr>
                             <tr>
                                 <th># Of Vehicles:</th>
@@ -73,7 +138,7 @@
                             </tr>
                             <tr>
                                 <th>Account Status:</th>
-                                <th>Active &#9989;, Inactive &#10060;</th>
+                                <th>$actStatus[0] $actStatus[1]</th>
                             </tr>
                         </tbody>
                 </table>
@@ -90,7 +155,7 @@
                         <img class="card-img-top" src="img/payReminder.jpg" alt="image_unavail" style="width:100%">
                         <div class="card-body">
                             <center>
-                            <h4 class="card-title">John Doe,</h4>
+                            <h4 class="card-title">$firstName,</h4>
                             <p class="card-text">Your next payment is due:</p>
                             <p class="card-date"><strong>Jan 1, 2020</strong></p>
                             <a href="payment.php" class="btn btn-success">Make Payment Now</a>
@@ -128,7 +193,7 @@
     // Session Not Active
     else{
         //echo "Session Failed Check";
-        header("Location: login-page.html");
+        header("Location: login-page.php");
     }
 ?>
 

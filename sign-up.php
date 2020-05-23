@@ -60,7 +60,7 @@
         // Hashes User's Password
         $formElements[7] = password_hash($formElements[7], PASSWORD_DEFAULT);
         
-        // Function that appends price and picture to card object
+        // Function that prepares values for price and picture to give to card object
         function adjustPrice($memberChoice){
             $priceArray = array(0,"");
             if($memberChoice == "Silver"){

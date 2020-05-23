@@ -49,6 +49,7 @@
                 }
                 else{
                     echo "INVALID!";
+                    echo '<a class="btn btn-large btn-primary" href="../login-page.php" style="font-size: 100%; border-color: rgb(252, 252, 252); border-width: thick;">Return To Login</a>';
                 }
     
                 $dbh = null;
