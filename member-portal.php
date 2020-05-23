@@ -39,10 +39,11 @@
                 $accountNum = $user['member_id'];
                 $memberType = $user['member_type'];
                 $accountStatus = $user['member_status'];
+                $memberSince = $user['member_since'];
                 $typeStatus = array("", "");
                 $actStatus = array("", "");
 
-                // Function to store member type/status
+                // Stores member type/status
                 if ($memberType == "Silver"){
                     $typeStatus[0] = "Silver";
                     $typeStatus[1] = "&#128191;";
@@ -52,7 +53,7 @@
                     $typeStatus[1] = "&#128192;";
                 }
 
-                // Function to store account type/status
+                // Stores account type/status
                 if ($accountStatus == 0){
                     $actStatus[0] = "Inactive";
                     $actStatus[1] = "&#10060;";

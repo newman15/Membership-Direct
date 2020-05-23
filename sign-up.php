@@ -32,6 +32,13 @@
 
     <?php
 
+    // Check if user has logged in using 'login' page btn
+    // Protects against person entering via URL Manipulation
+    if (!isset($_POST['sign-up-btn'])){
+        header("Location: sign-up.html");
+    }
+    else{
+
         // Store Variables from form
         $formElements = array(
             0,
@@ -149,7 +156,7 @@
             echo $stmt . "<br/>" . $e->getMessage();
             die();
         }
-
+    }
     ?>
     <br/><br/>
 
