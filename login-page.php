@@ -69,7 +69,7 @@
           <br /><br />
           <div id="sign-up">
             <p>Not a member? Sign up today!</p>
-            <button type="button" class="btn btn-primary" href="sign-up.html">Sign Up</button>
+            <a href="sign-up.html" class="btn btn-primary btn-md">Sign Up</a>
           </div>
     
         </form>
