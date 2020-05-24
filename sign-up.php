@@ -37,6 +37,7 @@
     if (!isset($_POST['sign-up-btn'])){
         header("Location: sign-up.html");
     }
+
     else{
 
         // Store Variables from form
@@ -45,6 +46,7 @@
             $firstName = $_POST["first-name"],
             $lastName= $_POST["last-name"],
             $address = $_POST["address"],
+            $city = $_POST["city"],
             $state = $_POST["state"],
             $zipCode = $_POST["zip"],
             $email = $_POST["email"],
@@ -52,20 +54,28 @@
             $phoneNum = $_POST["contact-number"],
             $memberStatus = 0,
             $memberType = $_POST["member-selection"],
-            $vehicleMake = $_POST["vehicle-make"],
-            $vehicleModel = $_POST["vehicle-model"],
-            $vehicleYear = $_POST["vehicle-year"],
             $insuranceProvider = $_POST["insur-prov"],
             $policyNum = $_POST["pol-num"],
             $numClaims = 0,
             $businessId = $_POST["bus-id"]
         );
 
+        // Store variables from form
+        $vehicleElements = array(
+            0,
+            0,
+            $vehicleMake = $_POST["vehicle-make"],
+            $vehicleModel = $_POST["vehicle-model"],
+            $vehicleYear = $_POST["vehicle-year"],
+            $vehicleColor = $_POST["vehicle-color"],
+            $vehicleVin = $_POST["vehicle-vin"],
+        );
+
         // Obtains user's membership choice and price associated
-        $memberChoice = $formElements[10]; //User's member choice (Gold or Silver)
+        $memberChoice = $formElements[11]; //User's member choice (Gold or Silver)
 
         // Hashes User's Password
-        $formElements[7] = password_hash($formElements[7], PASSWORD_DEFAULT);
+        $formElements[8] = password_hash($formElements[8], PASSWORD_DEFAULT);
         
         // Function that prepares values for price and picture to give to card object
         function adjustPrice($memberChoice){
@@ -129,6 +139,7 @@
             }
         }).render('#paypal-button-container');
         </script>
+        <br/><br/><a href="sign-up.html">Return To Sign Up</a>
         HTML;
 
         // DB Interaction
@@ -136,25 +147,50 @@
             // Connection to DB
             require "includes/db-info.php";
             $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
+            $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
             echo "<br/><br/>";
             
-            $stmt = $dbh->prepare("INSERT INTO member (first_name, last_name, address, state, zip_code, email, password, phone_number, member_status, 
-                member_type, vehicle_make, vehicle_model, vehicle_year, car_insurance, policy_number, number_of_claims, business_id) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            // Statement for Member Table
+            $stmt = $dbh->prepare("INSERT INTO member (first_name, last_name, address, city, state, zip_code, email, password, phone_number, member_status, 
+                member_type, insurance_provider, policy_number, number_of_claims, business_id) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            for ($i = 1; $i < 18; $i++){
+            for ($i = 1; $i < 16; $i++){
                 $stmt->bindParam($i, $formElements[$i]);
             }
 
             $stmt->execute();
+
+            // Statement to retrieve Member ID
+            // Grabs the member Id associated with account and assigns it to vehicle
+            // This protects against possibility of deletions in DB
+            $stmt2 = $dbh->prepare("SELECT member_id FROM member WHERE email = ?");
+            $stmt2->execute([$email]);
+            $memberId = $stmt2->fetchColumn();
+
+            // Statement for Vehicle Table
+            $stmt3 = $dbh->prepare("INSERT INTO vehicle (member_id, vehicle_make, vehicle_model, vehicle_year, vehicle_color, vehicle_vin) 
+                VALUES (?, ?, ?, ?, ?, ?)");
+
+            $stmt3->bindParam(1, $memberId);
+            for ($i = 2; $i < 7; $i++){
+                $stmt3->bindParam($i, $vehicleElements[$i]);
+            }
+
+            $stmt3->execute();            
+
             echo "Your account has been created, see below for next steps!";
-            echo $DisplayPayPal;
+            echo $DisplayPayPal; //Display Paypal if DB successful
+            
             $dbh = null;
             $stmt = null;
+            $stmt2 = null;
+            $stmt3 = null;
 
-        } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
-            echo $stmt . "<br/>" . $e->getMessage();
-            die();
+        } catch(PDOException $e){
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            //die();
         }
     }
     ?>

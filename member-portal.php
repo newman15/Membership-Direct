@@ -1,14 +1,12 @@
 <?php
     session_start();
 
-    // Import Nav Bar
-    require "includes/portal-nav.php";
-
     // If Session is active...
     if(isset($_SESSION['sessionEmail'])){
+        // Import Nav Bar
+        require "includes/portal-nav.php";
 
         // Declare Session Variables
-        //$userName = $_SESSION["sessionName"];
         $userEmail =  $_SESSION['sessionEmail'];
 
         // Declare variables to be used in member portal tables
