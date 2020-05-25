@@ -105,7 +105,6 @@
             .flex-container {
                 display: flex;
                 flex-direction: row;
-                
             }
             .left-col{
                 font-weight: bold;
@@ -115,8 +114,6 @@
         </style>
         </head>
         <body>
-        <br />
-            <br /><br />
             <center><h1>Account</h1></center> 
             <!--------------- More Info Tabs ------------------>
                 <br/><br/><br/>
@@ -136,10 +133,14 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- About Me tab -->
-                        <div id="about_me" class="container tab-pane active"><br>
+                        <div id="about_me" class="container tab-pane active"><br/>
                             <h3>Contact </h3>	
                             <div class="flex-container">
                                 <div class="left-col">Full Name:</div><div>$firstName $lastName</div>
+                            </div>
+                            
+                            <div class="flex-container">
+                                <div class="left-col">Email:</div><div>$email</div>
                             </div>
                             
                             <div class="flex-container">
@@ -158,9 +159,19 @@
                                 <div class="left-col">Zip Code:</div><div>$zip_code</div>
                             </div>
                             <a href="edit-contact.php">Edit</a>
+                            
+                            <br/><br/>
+                            <h3>Membership</h3>	
+                            <div class="flex-container">
+                                <div class="left-col">Type:</div><div>$member_type</div>
+                            </div>
+                            
+                            <div class="flex-container">
+                                <div class="left-col">Status:</div><div>$member_status</div>
+                            </div>
                         </div> 
                         <!-- Billing & Payment tab -->
-                        <div id="payment" class="container tab-pane fade"><br>
+                        <div id="payment" class="container tab-pane fade"><br/>
                             <h3>Payment Status</h3>
                             <div class="row">
                             <div class="column_left">
@@ -227,6 +238,7 @@
                         </div>
                     </div>
                 </div>
+                <br/><br/>
         </body>
         </html>
         HTML;
