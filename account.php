@@ -35,12 +35,23 @@
             // Connection to DB
             require "includes/db-info.php";
             $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
+            $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             echo "<br/><br/>";
+
+            // Get Member Id based off email
+            $getId = $dbh->prepare("SELECT member_id FROM member WHERE email=?");
+            $getId->execute([$userEmail]);
+            $memberId = $getId->fetchColumn();
             
-            // SQL Email Check
+            // SQL Member
             $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
             $stmt->execute([$userEmail]);
             $user = $stmt->fetch();
+
+            // SQL Vehicle
+            $getVehicle = $dbh->prepare("SELECT make, model, year FROM vehicle WHERE member_id=?");
+            $getVehicle->execute([$memberId]);
+            $userVehicle = $getVehicle->fetch();
 
             if ($user){
                 $firstName = $user['first_name'];
@@ -58,18 +69,18 @@
                 else
                     $member_status = "Active";
 
-                $provider = $user['car_insurance'];
-                $vehicle_make = $user['vehicle_make'];
-                $vehicle_model = $user['vehicle_model'];
-                $vehicle_year = $user['vehicle_year'];
+                $provider = $user['insurance_provider'];
+                $vehicle_make = $userVehicle['make'];
+                $vehicle_model = $userVehicle['model'];
+                $vehicle_year = $userVehicle['year'];
                 $business_id = $user['business_id'];
                 $number_of_claims = $user['number_of_claims'];
                 $policy_number = $user['policy_number'];
             }
 
         } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
-            echo $stmt . "<br/>" . $e->getMessage();
-            die();
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            //die();
         }
 
         echo <<<HTML
@@ -209,10 +220,10 @@
                             <h3>Insurance</h3>
                             <div class="row">
                                 <div class="column_left">
-                                    Provider:		<br/>
-                                    Policy Number:		<br/>
-                                    Number of Claims:		<br/>
-                                    Business ID:			<br/>
+                                    Provider:                   <br/>
+                                    Policy Number:                  <br/>
+                                    Number of Claims:                   <br/>
+                                    Business ID:                    <br/>
                                 </div>
                                 <div class="column_right">
                                     $provider				<br/>
