@@ -173,7 +173,7 @@
                                 <p><strong>*Note: It can take up to 48 hours for a claim to appear in your portal.</strong></p>
                                 <br />
                                 <div class="d-flex p-2 text-white justify-content-around">  
-                                    <a href="claims-submit.php" type="button" class="btn btn-primary btn-md">Submit New</a>
+                                    <a href="claims-create.php" type="button" class="btn btn-primary btn-md">Submit New</a>
                                     <a href="claims-view.php" type="button" class="btn btn-primary btn-md">View Existing</a>
                                 </div>
                             </div>

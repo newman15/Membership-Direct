@@ -40,7 +40,7 @@
 
     else{
 
-        // Store Variables from form
+        // Store Member Info From Form
         $formElements = array(
             0,
             $firstName = $_POST["first-name"],
@@ -60,7 +60,7 @@
             $businessId = $_POST["bus-id"]
         );
 
-        // Store variables from form
+        // Store Vehicle Info From Form
         $vehicleElements = array(
             0,
             0,
@@ -170,7 +170,7 @@
             $memberId = $stmt2->fetchColumn();
 
             // Statement for Vehicle Table
-            $stmt3 = $dbh->prepare("INSERT INTO vehicle (member_id, vehicle_make, vehicle_model, vehicle_year, vehicle_color, vehicle_vin) 
+            $stmt3 = $dbh->prepare("INSERT INTO vehicle (member_id, make, model, year, color, vin) 
                 VALUES (?, ?, ?, ?, ?, ?)");
 
             $stmt3->bindParam(1, $memberId);

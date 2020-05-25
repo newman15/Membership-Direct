@@ -10,8 +10,20 @@
         // Declare Session Variables
         $userEmail =  $_SESSION['sessionEmail'];
 
-        // Declare variables to be used in New Claim Options
-        $userVehicle = array("", "", 0);
+        // Array to store form elements
+        $claimForm = array(
+            $shopName = $_POST["auto-shop-name"],
+            $shopAddress = $_POST["shop-address"],
+            $shopCity = $_POST["shop-city"],
+            $shopState = $_POST["shop-state"],
+            $shopZip = $_POST["shop-zip"],
+            $deductibleAmount = $_POST["ded-amount"]
+        );
+
+        // Array to store Claim Details
+        $completedClaim = array(
+            0,0,"","","","",0,"","","","","","",0,0.00
+        );
 
         // DB Interaction
         try{
@@ -22,31 +34,55 @@
             echo "<br/><br/>";
 
             // Get Member Id based off email
-            $stmt = $dbh->prepare("SELECT member_id FROM member WHERE email=?");
-            $stmt->execute([$userEmail]);
-            $memberId = $stmt->fetchColumn();
+            $getId = $dbh->prepare("SELECT member_id FROM member WHERE email=?");
+            $getId->execute([$userEmail]);
+            $memberId = $getId->fetchColumn();
             
+            // Get Member Info
+            $getName = $dbh->prepare("SELECT first_name, last_name FROM member WHERE member_id=?");
+            $getName->execute([$memberId]);
+            $userName = $getName->fetch();
+
             // Get Vehicle Info
-            $stmt2 = $dbh->prepare("SELECT vehicle_make, vehicle_model, vehicle_year FROM vehicle WHERE member_id=?");
+            $stmt2 = $dbh->prepare("SELECT make, model, year, color, vin FROM vehicle WHERE member_id=?");
             $stmt2->execute([$memberId]);
-            $user = $stmt2->fetch();
+            $userVehicle = $stmt2->fetch();
+
+            // Commit Claim To DB
+            $submitClaim = $dbh->prepare("INSERT INTO claims (member_id, first_name, last_name, make, model, year,
+                color, vin, shop_name, shop_address, shop_city, shop_state, shop_zip, deductible_amount) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Checks if DB returned any data at all
-            // If so, then store vehicle info in user array
-            if($user){
-                $userVehicle[0] = $user['vehicle_make'];
-                $userVehicle[1] = $user['vehicle_model'];
-                $userVehicle[2] = $user['vehicle_year'];
+            // If so, then store claim info in completedClaim array
+            if($memberId){
+                $completedClaim[1] = $memberId;
+                $completedClaim[2] = $userName[0];
+                $completedClaim[3] = $userName[1];
+                for($i = 4; $i < 9; $i++){
+                    $completedClaim[$i] = $userVehicle[$i - 4];               
+                }
+
+                for($i = 9; $i < 15; $i++){
+                    $completedClaim[$i] = $claimForm[$i - 9];               
+                }
+
+                for ($i = 1; $i < 15; $i++){
+                    $submitClaim->bindParam($i, $completedClaim[$i]);
+                }
+
+                $submitClaim->execute();
             }
+
             else{
-                echo "INVALID!";
+                echo "No Member ID Found";
             }
 
             $dbh = null;
             $stmt = null;
             $stmt2 = null;
 
-        } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
+        } catch(PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
             //die();
         }
@@ -66,41 +102,13 @@
             a.nav-link:hover, a.nav-link:active{
                 font-size: 150%;
             }
-            #claim-form{
+            h1{
                 text-align: center;
             }
         </style>
         </head>
         <body>
-            <!-- New Claim Form -->
-            <br /><br />
-            <div class="container" id="claim-form">
-                <h2>File a new claim</h2><br/>
-                <form method="POST">
-                    <!-- Choose Vehicle -->
-                    <div class="form-group">
-                        <label for="vehicle-choice">Choose Vehicle (select one):</label>
-                        <select class="form-control" id="vehicle-choice" name="vehicle-choice">
-                            <option>$userVehicle[2] $userVehicle[0] $userVehicle[1]</option>
-                            <option>Vehicle 2</option>
-                            <option>Vehicle 3</option>
-                        </select>
-                    </div><br /><br />
-                    <!-- Auto Shop Info -->
-                    <div class="form-group" id="auto-shop-info">
-                        <label for="auto-shop-name">Auto Body Information</label>
-                        <input type="text" class="form-control" placeholder="Enter Auto Shop Name" id="auto-shop-name" name="auto-shop-name">
-                        <input type="text" class="form-control" placeholder="Enter Billing Address" id="billing-address" name="billing-address">
-                        <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="business-contact-number" name="business-contact-number">
-                    </div><br /><br />
-                    <!-- Upload Insurance Doc -->
-                    <div class="form-group" id="upload-claim">
-                        <label for="upload-claim-document">Upload proof of insurance claim</label>
-                        <input type="file" class="form-control-file border" id="insurance-claim-doc" name="insurance-claim-doc">
-                    </div><br /><br />
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+           <h1>Form Successfully Submitted</h1>
         </body>
         </html>
         HTML;
