@@ -1,17 +1,4 @@
 <?php
-    if($_POST){
-        require "includes/db-info.php";
-        $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
-        
-        $stmt = $dbh->prepare("UPDATE member SET first_name = :nameNew WHERE first_name = :nameOld");
-        $stmt->bindParam(":nameOld", $_POST["old-name"]);
-        $stmt->bindParam(":nameNew", $_POST["first-name"]);
-        $stmt->execute();
-        header('Location: account.php');
-        die;
-    }
-?>
-<?php
     session_start();
 
     // Import Nav Bar
@@ -101,37 +88,39 @@
         <div id="about_me" class="container tab-pane active"><br>
         <h3>Contact </h3>
 
-        <form action='edit-contact.php' method='POST'>	
-            <input type="hidden" name="old-name" value = <?php echo $firstName ?>></input>
-
+        <form action='contact-submit.php' method='POST'>
             <div class="flex-container">
                 <div class="left-col">First Name:</div>
-                <div><input type="text" name="first-name" value = <?php echo $firstName ?>></div>
+                <div><input type="text" name="first-name" value = "<?php echo $firstName ?>"></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Last Name:</div>
-                <div><input type="text" value = <?php echo $lastName ?>></div>
+                <div><input type="text" name="last-name" value = "<?php echo $lastName ?>"></div>
+            </div>
+            
+            <div class="flex-container">
+                <div class="left-col">Email:</div><div><?php echo $email ?></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Phone Number:</div>
-                <div><input type="text" value = <?php echo $phone_number ?>></div>
+                <div><input type="text" name="phone-number" value = "<?php echo $phone_number ?>"></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Address:</div>
-                <div><input type="text" value = <?php echo $address ?>></div>
+                <div><input type="text" name="address" value = "<?php echo $address ?>"></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">State:</div>
-                <div><input type="text" value =<?php echo $state ?>></div>
+                <div><input type="text" name="state" value ="<?php echo $state ?>"></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Zip Code:</div>
-                <div><input type="text" value = <?php echo $zip_code ?>></div>
+                <div><input type="text" name="zip-code" value = "<?php echo $zip_code ?>"></div>
             </div>
 
             </div>
