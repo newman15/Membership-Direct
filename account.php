@@ -116,11 +116,13 @@
             .flex-container {
                 display: flex;
                 flex-direction: row;
+                line-height: 2;
+                margin:25px;
+                
             }
             .left-col{
                 font-weight: bold;
-                width:150px;
-                height:40px;
+                width:15%;
             }
         </style>
         </head>
@@ -143,108 +145,111 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
+                        
                         <!-- About Me tab -->
                         <div id="about_me" class="container tab-pane active"><br/>
                             <h3>Contact </h3>	
                             <div class="flex-container">
-                                <div class="left-col">Full Name:</div><div>$firstName $lastName</div>
+                                <div class="left-col">
+                                    Full Name:<br/>
+                                    Email:<br/>
+                                    Phone Number:<br/>
+                                    Address:<br/>
+                                    State:<br/>
+                                    Zip Code:<br/>
+                                    <a href="edit-contact.php">Edit</a>
+                                </div>
+                                <div>
+                                    $firstName $lastName<br/>
+                                    $email<br/>
+                                    $phone_number<br/>
+                                    $address<br/>
+                                    $state<br/>
+                                    $zip_code<br/>
+                                </div>
                             </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">Email:</div><div>$email</div>
-                            </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">Phone Number:</div><div>$phone_number</div>
-                            </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">Address:</div><div>$address</div>
-                            </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">State:</div><div>$state</div>
-                            </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">Zip Code:</div><div>$zip_code</div>
-                            </div>
-                            <a href="edit-contact.php">Edit</a>
                             
                             <br/><br/>
                             <h3>Membership</h3>	
                             <div class="flex-container">
-                                <div class="left-col">Type:</div><div>$member_type</div>
+                                <div class="left-col">
+                                    Type:<br/>
+                                    Status:<br/>
+                                </div>
+                                
+                                <div>
+                                    $member_type<br/>
+                                    $member_status<br/>
+                                </div>
                             </div>
-                            
-                            <div class="flex-container">
-                                <div class="left-col">Status:</div><div>$member_status</div>
-                            </div>
-                        </div> 
+                        </div> <!--end About Me tab-->
+                        
+                        
                         <!-- Billing & Payment tab -->
                         <div id="payment" class="container tab-pane fade"><br/>
-                            <h3>Payment Status</h3>
-                            <div class="row">
-                            <div class="column_left">
-                                Current Standing:	<br/>
-                                Payment Due: 	<br/>
+                            <h3>Payment Status</h3>	
+                            <div class="flex-container">
+                                <div class="left-col">
+                                    Current Standing:<br/>
+                                    Payment Due:<br/>
+                                </div>
+                                <div>
+                                    Good [PLACEHOLDER]<br/>
+                                    $121.64 (December 31, 2021) [PLACEHOLDER]<br/>
+                                    <button class="btn btn-primary">Pay Now</button> [PLACEHOLDER]
+                                </div>
                             </div>
+                            <br/><br/><br/>
                             
-                            <div class="column_right">
-                                Good				<br/>
-                                $121.64 (December 31, 2021)	<br/>
+                            <h3>Cards</h3>
+                            <a href=''>Add Card [PLACEHOLDER]</a>
+                            <div class="flex-container">
+                                <div class="left-col">
+                                    CARD 1<br/><br/><br/>
+                                    CARD 2<br/><br/><br/>
+                                </div>
+                                <div>
+                                    VISA ending in 1234 [PLACEHOLDER]<br/>Exp: 3/2022 [PLACEHOLDER]<br/><br/>
+                                    VISA ending in 5678 [PLACEHOLDER]<br/>Exp: 8/2021 [PLACEHOLDER]<br/><br/>
+                                    <br/>
+                                </div>
                             </div>
-                            </div>  
-                            <!-- TODO: Pay Now button -->
-                            <br/><br/>
-                            <!-- TODO: Add Card button -->
-                            <div class="row">
-                            <div class="column_left">
-                                John (primary):		<br/><br/>
-                                <br/>
-                                Jane:				<br/><br/>
-                                <br/>
-                            </div>
-                            <div class="column_right">
-                                VISA ending in 1234				<br/>
-                                Exp: 3/2022				<br/>
-                                <br/>
-                                VISA ending in 5678		<br/>
-                                Exp: 8/2021				<br/>
-                                <br/>
-                            </div>
-                            </div>
+                            <br/>
+                            
                         </div>
                         <!-- Insurance tab -->
                         <div id="insurance" class="container tab-pane fade"><br>
                             <h3>Insurance</h3>
-                            <div class="row">
-                                <div class="column_left">
-                                    Provider:                   <br/>
-                                    Policy Number:                  <br/>
-                                    Number of Claims:                   <br/>
-                                    Business ID:                    <br/>
+                            <div class="flex-container">
+                                <div class="left-col">
+                                    Provider:<br/>
+                                    Policy Number:<br/>
+                                    Number of Claims:<br/>
+                                    Business ID:<br/>
                                 </div>
-                                <div class="column_right">
-                                    $provider				<br/>
-                                    $policy_number				<br/>
-                                    $number_of_claims				<br/>
-                                    $business_id			<br/>
+                                
+                                <div>
+                                    $provider<br/>
+                                    $policy_number<br/>
+                                    $number_of_claims<br/>
+                                    $business_id<br/>
                                 </div>
-                            </div> 
-                            <br/><br/>
-                            <h3>Vehicle</h3>
-                            <div class="row">
-                            <div class="column_left">
-                                Make:		<br/>
-                                Model:		<br/>
-                                Year:		<br/>
-                            </div> 
-                            <div class="column_right">
-                                $vehicle_make				<br/>
-                                $vehicle_model				<br/>
-                                $vehicle_year				<br/>
                             </div>
+                            <br/><br/>
+                            
+                            <h3>Vehicle</h3>
+                            <div class="flex-container">
+                                <div class="left-col">
+                                    Make:<br/>
+                                    Model:<br/>
+                                    Year:<br/>
+                                </div>
+                                
+                                <div>
+                                    $vehicle_make<br/>
+                                    $vehicle_model<br/>
+                                    $vehicle_year<br/>
+                                </div>
                             </div>
                         </div>
                     </div>
