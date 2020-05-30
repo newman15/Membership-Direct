@@ -123,7 +123,6 @@
                 <div><input type="text" name="zip-code" value = "<?php echo $zip_code ?>"></div>
             </div>
 
-            </div>
             <center>
             <button type="submit" class="btn btn-primary">
                 Submit Changes
@@ -132,5 +131,6 @@
             <a href="account.php">Cancel</a>
             </center>
         </form>
+        </div>
     </body>
 </html>
