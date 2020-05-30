@@ -22,6 +22,7 @@
             // Connection to DB
             require "includes/db-info.php";
             $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
+            $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             echo "<br/><br/>";
             
             // SQL Email Check
@@ -70,8 +71,8 @@
             $stmt = null;
 
         } catch(PDOException $e){       // Need to set_exception_handler() to protect DB
-            echo $stmt . "<br/>" . $e->getMessage();
-            die();
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            //die();
         }
 
         // HTML Code

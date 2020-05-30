@@ -63,27 +63,27 @@
         <form action='vehicle-submit.php' method='POST'>
             <div class="flex-container">
                 <div class="left-col">Make:</div>
-                <div><input type="text" name="make"></div>
+                <div><input type="text" name="make" required></div>
             </div>
             
             <div class="flex-container">
                 <div class="left-col">Model:</div>
-                <div><input type="text" name="model"></div>
+                <div><input type="text" name="model" required></div>
             </div>
             
             <div class="flex-container">
                 <div class="left-col">Year:</div>
-                <div><input type="text" name="year"></div>
+                <div><input type="text" name="year" required></div>
             </div>
             
             <div class="flex-container">
                 <div class="left-col">Color:</div>
-                <div><input type="text" name="color"></div>
+                <div><input type="text" name="color" required></div>
             </div>
             
             <div class="flex-container">
                 <div class="left-col">VIN:</div>
-                <div><input type="text" name="vin"></div>
+                <div><input type="text" name="vin" required></div>
             </div>
             <center>
                 <button type="submit" class="btn btn-primary">
