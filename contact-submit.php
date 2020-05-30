@@ -1,9 +1,6 @@
 <?php
     session_start();
 
-    // Import Nav Bar
-    require "includes/portal-nav.php";
-
     if(isset($_SESSION['sessionEmail'])){
 
         $userEmail = $_SESSION['sessionEmail'];
