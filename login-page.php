@@ -44,7 +44,7 @@
     <body>
       <br />
       <div class="top-link">
-        <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Security Coverage</h6></a>
+        <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Savings</h6></a>
       </div><br />
     
       <!--------------- Login & Sign Up Form ------------------>

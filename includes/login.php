@@ -1,19 +1,16 @@
 <?php
 
-    // Store Form Variables
-    $email = $_POST['email'];
-    $pswd = $_POST['pswd'];
-
     // Check if user has logged in using 'login' page btn
     // Protects against person entering via URL Manipulation
     if (isset($_POST['login-btn'])){
 
-        // Connection to DB
-        require "db-info.php";
+        // Store Form Variables
+        $email = $_POST['email'];
+        $pswd = $_POST['pswd'];
 
         // If user left a field empty
         if(empty($email) || empty($pswd)){
-            header("Location: ../login-page.html");
+            header("Location: ../construction.html");
             exit();
         }
 
@@ -34,11 +31,18 @@
                 $stmt->execute([$email]);
                 $user = $stmt->fetch();
 
+                // Stored hashed password from database
+                $hashedPass = $user['password'];
+
+                // Just for testing purposes
+                if(!$user){
+                    echo "email = $email <br/>Password = $pswd<br/><br/>";
+                    echo "No Password Retrieved <br/><br/>";
+                }
+
                 // Checks if DB returned any data at all
                 // If so, then compare passwords
-                if($user && password_verify($pswd, $user['password'])){
-                    echo "valid!";
-                    echo "Logging Into User Portal...";
+                if($user && password_verify($pswd, $hashedPass)){
 
                     // User has signed in successfully
                     // Create a session variable
@@ -49,7 +53,7 @@
 
                 }
                 else{
-                    echo "INVALID!";
+                    echo "INVALID USERNAME OR PASSWORD!     ";
                     echo '<a class="btn btn-large btn-primary" href="../login-page.php" style="font-size: 100%; border-color: rgb(252, 252, 252); border-width: thick;">Return To Login</a>';
                 }
     
