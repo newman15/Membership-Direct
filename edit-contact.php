@@ -91,12 +91,12 @@
         <form action='contact-submit.php' method='POST'>
             <div class="flex-container">
                 <div class="left-col">First Name:</div>
-                <div><input type="text" name="first-name" value = "<?php echo $firstName ?>"></div>
+                <div><input type="text" name="first-name" value = "<?php echo $firstName ?>" required></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Last Name:</div>
-                <div><input type="text" name="last-name" value = "<?php echo $lastName ?>"></div>
+                <div><input type="text" name="last-name" value = "<?php echo $lastName ?>" required></div>
             </div>
             
             <div class="flex-container">
@@ -105,22 +105,23 @@
 
             <div class="flex-container">
                 <div class="left-col">Phone Number:</div>
-                <div><input type="text" name="phone-number" value = "<?php echo $phone_number ?>"></div>
+                <div><input type="text" name="phone-number" value = "<?php echo $phone_number ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                placeholder="111-222-3333" required></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Address:</div>
-                <div><input type="text" name="address" value = "<?php echo $address ?>"></div>
+                <div><input type="text" name="address" value = "<?php echo $address ?>" required></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">State:</div>
-                <div><input type="text" name="state" value ="<?php echo $state ?>"></div>
+                <div><input type="text" name="state" value ="<?php echo $state ?>" required></div>
             </div>
 
             <div class="flex-container">
                 <div class="left-col">Zip Code:</div>
-                <div><input type="text" name="zip-code" value = "<?php echo $zip_code ?>"></div>
+                <div><input type="text" name="zip-code" value = "<?php echo $zip_code ?>" required></div>
             </div>
 
             <center>

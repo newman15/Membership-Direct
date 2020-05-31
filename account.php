@@ -228,16 +228,14 @@
                         <?php
                             echo "<div class='left-col'>";
                             for ($i = 0; $i < count($vehicles); $i++)
-                            {
                                 echo "Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><br/><br/>";
-                            }
-                            echo "</div>";
 
+                            echo "</div>";
                             echo "<div>";
+                            
                             for ($i = 0; $i < count($vehicles); $i++)
-                            {
                                 echo $vehicles[$i][0]."<br/>".$vehicles[$i][1]."<br/>".$vehicles[$i][2]."<br/>".$vehicles[$i][3]."<br/>".$vehicles[$i][4]."<br/><br/><br/>";
-                            }
+
                             echo "</div>"
                         ?>
                     </div>

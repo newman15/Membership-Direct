@@ -73,7 +73,7 @@
             
             <div class="flex-container">
                 <div class="left-col">Year:</div>
-                <div><input type="text" name="year" required></div>
+                <div><input type="number" name="year" min="1900" max="2021" required></div>
             </div>
             
             <div class="flex-container">
@@ -83,7 +83,7 @@
             
             <div class="flex-container">
                 <div class="left-col">VIN:</div>
-                <div><input type="text" name="vin" required></div>
+                <div><input type="text" name="vin" minlength="17" maxlength="17" required></div>
             </div>
             <center>
                 <button type="submit" class="btn btn-primary">
