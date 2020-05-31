@@ -4,6 +4,7 @@
   <title>Payment</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> <!-- Top Link -->
@@ -31,6 +32,8 @@
 <body>
 
     <?php
+
+    session_start();
 
     // Check if user has logged in using 'login' page btn
     // Protects against person entering via URL Manipulation
@@ -97,6 +100,7 @@
         // Create PayPal Connection
         // Uses Heredoc syntax
         $DisplayPayPal = <<<HTML
+        <script src="https://www.paypal.com/sdk/js?client-id=ASvO0MKpsMXQIIcwubdbcHNnEQI-DfG5ZWPGzm5GQBSRvqY0N0T8cF8ftG6BRl90HSYtcaX3mxWl0cka"></script>
         <div id="paypal-button-container">
             <h1>To complete your $memberChoice membership account, select a payment method below</h1><br/><br/>
             <h2>Your Order Summary</h2><br/><br/>
@@ -114,7 +118,12 @@
         </div>
         <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
         <script>
-        var payPalPrice = "$memberCost[0]"; // Fills price on card based on user selection
+        $(document).ready(function(){
+            $("#next-btn").hide();
+        });
+        var payPalPrice = "$memberCost[0]";
+        var paymentReceived = false; // Might use for confirmation page
+         // Fills price on card based on user selection
         paypal.Buttons({
             style: {
                 shape: 'pill',
@@ -127,19 +136,22 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: "119.88"
+                            value: payPalPrice
                         }
                     }]
                 });
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    alert(details.payer.name.given_name + ', your payment has been processed. Login now!');
+                    $("#next-btn").show();
                 });
+                paymentReceived = true; // Might use for confirmation page
             }
         }).render('#paypal-button-container');
         </script>
-        <br/><br/><a href="sign-up.html">Return To Sign Up</a>
+        <br/><br/>
+        <a href="login-page.php" id="next-btn" class="btn btn-primary btn-md">Continue To Login</a>
         HTML;
 
         // DB Interaction
@@ -180,13 +192,12 @@
 
             $stmt3->execute();            
 
-            echo "Your account has been created, see below for next steps!";
-            echo $DisplayPayPal; //Display Paypal if DB successful
-            
             $dbh = null;
             $stmt = null;
             $stmt2 = null;
             $stmt3 = null;
+
+            echo $DisplayPayPal; //Display Paypal if DB successful
 
         } catch(PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());

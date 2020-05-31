@@ -89,12 +89,12 @@
                     <!-- Auto Shop Info -->
                     <div class="form-group" id="auto-shop-info">
                         <label for="auto-shop-name">Auto Body Information</label>
-                        <input type="text" class="form-control" placeholder="Enter Auto Shop Name" id="auto-shop-name" name="auto-shop-name">
-                        <input type="text" class="form-control" placeholder="Enter Shop Address" id="shop-address" name="shop-address">
-                        <input type="text" class="form-control" placeholder="Enter Shop City" id="shop-city" name="shop-city">
-                        <input type="text" class="form-control" placeholder="Enter Shop State" id="shop-state" name="shop-state">
-                        <input type="text" class="form-control" placeholder="Enter Shop Zip" id="shop-zip" name="shop-zip">
-                        <input type="number" class="form-control" placeholder="Enter Deductible Amount" id="ded-amount" name="ded-amount">
+                        <input type="text" class="form-control" placeholder="Enter Auto Shop Name" id="auto-shop-name" name="auto-shop-name" required>
+                        <input type="text" class="form-control" placeholder="Enter Shop Address" id="shop-address" name="shop-address" required>
+                        <input type="text" class="form-control" placeholder="Enter Shop City" id="shop-city" name="shop-city" required>
+                        <input type="text" class="form-control" placeholder="Enter Shop State" id="shop-state" name="shop-state" required>
+                        <input type="text" class="form-control" placeholder="Enter Shop Zip" id="shop-zip" name="shop-zip" required>
+                        <input type="number" class="form-control" placeholder="Enter Deductible Amount" id="ded-amount" name="ded-amount" step="0.01" required>
                     </div><br /><br />
                     <!-- Upload Insurance Doc
                     <div class="form-group" id="upload-claim">
