@@ -69,7 +69,7 @@
           <br /><br />
           <div id="sign-up">
             <p>Not a member? Sign up today!</p>
-            <a href="sign-up.html" class="btn btn-primary btn-md">Sign Up</a>
+            <a href="sign-up-page.php" class="btn btn-primary btn-md">Sign Up</a>
           </div>
     
         </form>

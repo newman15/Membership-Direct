@@ -38,7 +38,7 @@
     // Check if user has logged in using 'login' page btn
     // Protects against person entering via URL Manipulation
     if (!isset($_POST['sign-up-btn'])){
-        header("Location: sign-up.html");
+        header("Location: sign-up-page.php");
     }
 
     else{
@@ -84,11 +84,11 @@
         function adjustPrice($memberChoice){
             $priceArray = array(0,"");
             if($memberChoice == "Silver"){
-                $priceArray[0] = 119.88;
+                $priceArray[0] = 71.88;
                 $priceArray[1] = "img/silver-coin.jpg";
             }
             else if($memberChoice == "Gold"){
-                $priceArray[0] = 191.88;
+                $priceArray[0] = 119.88;
                 $priceArray[1] = "img/gold_coin.jpg";
             }
 
@@ -144,7 +144,7 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     alert(details.payer.name.given_name + ', your payment has been processed. Login now!');
-                    $("#next-btn").show();
+                    $("#next-btn").show(); // Show button after successful payment
                 });
                 paymentReceived = true; // Might use for confirmation page
             }
@@ -162,42 +162,69 @@
             $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
             echo "<br/><br/>";
-            
-            // Statement for Member Table
-            $stmt = $dbh->prepare("INSERT INTO member (first_name, last_name, address, city, state, zip_code, email, password, phone_number, member_status, 
+
+            $checkDuplicateEmails = $dbh->prepare("SELECT email FROM member WHERE email=?");
+            $checkDuplicateEmails->execute([$email]);
+            $emailTaken = $checkDuplicateEmails->fetchColumn();
+
+            // If email is already registered, return user to sign up page
+            if ($emailTaken){
+                header("Location: sign-up-page.php?error=existingemail&first-name=".$firstName."&last-name=".$lastName.
+                        "&address=".$address."&city=".$city."&state=".$state."&zip=".$zipCode."&contact-number=".$phoneNum."&vehicle-make=".
+                        $vehicleMake."&vehicle-model=".$vehicleModel."&vehicle-year=".$vehicleYear."&vehicle-color=".
+                        $vehicleColor."&vehicle-vin=".$vehicleVin."&insur-prov=".$insuranceProvider."&pol-num=".$policyNum);
+                exit(); // Stop script if duplicate email detected
+            }
+
+            // If email is not valid, return user to sign up page
+            else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                header("Location: sign-up-page.php?error=invalidemail&first-name=".$firstName."&last-name=".$lastName.
+                    "&address=".$address."&city=".$city."&state=".$state."&zip=".$zipCode."&contact-number=".$phoneNum."&vehicle-make=".
+                    $vehicleMake."&vehicle-model=".$vehicleModel."&vehicle-year=".$vehicleYear."&vehicle-color=".
+                    $vehicleColor."&vehicle-vin=".$vehicleVin."&insur-prov=".$insuranceProvider."&pol-num=".$policyNum);
+                exit(); // Stop script if duplicate email detected
+            }
+
+            // Otherwise, continue with sign up process
+            else{
+                // Statement for Member Table
+                $memberInsert = $dbh->prepare("INSERT INTO member (first_name, last_name, address, city, state, zip_code, email, password, phone_number, member_status, 
                 member_type, insurance_provider, policy_number, number_of_claims, business_id) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            for ($i = 1; $i < 16; $i++){
-                $stmt->bindParam($i, $formElements[$i]);
-            }
+                for ($i = 1; $i < 16; $i++){
+                $memberInsert->bindParam($i, $formElements[$i]);
+                }
 
-            $stmt->execute();
+                $memberInsert->execute();
 
-            // Statement to retrieve Member ID
-            // Grabs the member Id associated with account and assigns it to vehicle
-            // This protects against possibility of deletions in DB
-            $stmt2 = $dbh->prepare("SELECT member_id FROM member WHERE email = ?");
-            $stmt2->execute([$email]);
-            $memberId = $stmt2->fetchColumn();
+                // Statement to retrieve Member ID
+                // Grabs the member Id associated with account and assigns it to vehicle
+                // This protects against possibility of deletions in DB
+                $getId = $dbh->prepare("SELECT member_id FROM member WHERE email = ?");
+                $getId->execute([$email]);
+                $memberId = $getId->fetchColumn();
 
-            // Statement for Vehicle Table
-            $stmt3 = $dbh->prepare("INSERT INTO vehicle (member_id, make, model, year, color, vin) 
+                // Statement for Vehicle Table
+                $vehicleInsert = $dbh->prepare("INSERT INTO vehicle (member_id, make, model, year, color, vin) 
                 VALUES (?, ?, ?, ?, ?, ?)");
 
-            $stmt3->bindParam(1, $memberId);
-            for ($i = 2; $i < 7; $i++){
-                $stmt3->bindParam($i, $vehicleElements[$i]);
+                $vehicleInsert->bindParam(1, $memberId);
+                for ($i = 2; $i < 7; $i++){
+                $vehicleInsert->bindParam($i, $vehicleElements[$i]);
+                }
+
+                $vehicleInsert->execute();            
+
+                $dbh = null;
+                $memberInsert = null;
+                $getId = null;
+                $vehicleInsert = null;
+
+                echo $DisplayPayPal; //Display Paypal if DB successful
             }
-
-            $stmt3->execute();            
-
-            $dbh = null;
-            $stmt = null;
-            $stmt2 = null;
-            $stmt3 = null;
-
-            echo $DisplayPayPal; //Display Paypal if DB successful
+            
+            
 
         } catch(PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());

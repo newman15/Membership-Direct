@@ -10,7 +10,7 @@
 
         // If user left a field empty
         if(empty($email) || empty($pswd)){
-            header("Location: ../construction.html");
+            header("Location: ../login-page.php");
             exit();
         }
 
