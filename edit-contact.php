@@ -4,38 +4,41 @@
     // Import Nav Bar
     require "includes/portal-nav.php";
 
-    if(isset($_SESSION['sessionEmail'])){
+    if(!isset($_SESSION['sessionEmail']))
+    {
+        header("location: login-page.html");
+        die();
+    }
 
-        $userEmail = $_SESSION['sessionEmail'];
+    $userEmail = $_SESSION['sessionEmail'];
 
-        // Variables: About Me
-        $firstName = "";
-        $lastName = "";
-        $email = "";
-        $phone_number = "";
-        $address = "";
-        $state = "";
-        $zip_code = "";
+    // Variables: About Me
+    $firstName = "";
+    $lastName = "";
+    $email = "";
+    $phone_number = "";
+    $address = "";
+    $state = "";
+    $zip_code = "";
 
-        // Connection to DB
-        require "includes/db-info.php";
-        $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
-        
-        // SQL Email Check
-        $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
-        $stmt->execute([$userEmail]);
-        $user = $stmt->fetch();
-        
-        if ($user){
-            $firstName = $user['first_name'];
-            $lastName = $user['last_name'];
-            $email = $user['email'];
-            $phone_number = $user['phone_number'];
-            $address = $user['address'];
-            $state = $user['state'];
-            $zip_code = $user['zip_code'];
-        }
-    }   
+    // Connection to DB
+    require "includes/db-info.php";
+    $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
+    
+    // SQL Email Check
+    $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
+    $stmt->execute([$userEmail]);
+    $user = $stmt->fetch();
+    
+    if ($user){
+        $firstName = $user['first_name'];
+        $lastName = $user['last_name'];
+        $email = $user['email'];
+        $phone_number = $user['phone_number'];
+        $address = $user['address'];
+        $state = $user['state'];
+        $zip_code = $user['zip_code'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
