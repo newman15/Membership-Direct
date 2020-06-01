@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['sessionEmail'])){
+        header("Location: sign-up-page.php?error=stillsignedin");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +41,6 @@
 <body>
 
     <?php
-
-    session_start();
 
     // Check if user has logged in using 'login' page btn
     // Protects against person entering via URL Manipulation

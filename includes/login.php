@@ -36,8 +36,9 @@
 
                 // Just for testing purposes
                 if(!$user){
-                    echo "email = $email <br/>Password = $pswd<br/><br/>";
-                    echo "No Password Retrieved <br/><br/>";
+                    // If email is already registered, return user to sign up page
+                    header("Location: ../login-page.php?error=failedlogin&email=".$email);
+                    exit(); // Stop script if duplicate email detected
                 }
 
                 // Checks if DB returned any data at all

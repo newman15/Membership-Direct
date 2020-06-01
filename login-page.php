@@ -9,11 +9,8 @@
     header("Location: member-portal.php");
   }
 
-  else{
-    //echo "Session NOT Recognized";
+  else{ ?>
 
-    // html code
-    echo <<<HTML
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -30,12 +27,19 @@
         #form-title{
           text-align: center;
         }
+        
         #sign-up{
           text-align: center;
         }
+
         .top-link{
         margin-left: 11%;
         font-family: 'Varela Round', sans-serif;
+        font-weight: bold;
+        }
+
+        .error-message{
+        color: red;
         font-weight: bold;
         }
       </style>
@@ -43,6 +47,7 @@
     
     <body>
       <br />
+
       <div class="top-link">
         <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Savings</h6></a>
       </div><br />
@@ -54,8 +59,18 @@
     
         <form method="POST" action="includes/login.php">
           <div class="form-group">
+
+            <?php
+              // Set error message for an failed login 
+              if (isset($_GET['error'])){
+                  if(isset($_GET['error']) == "failedlogin"){
+                      echo '<p class="error-message">Invalid email or password!</p>';
+                  }
+              }
+            ?>
+
             <label for="email-label">Email:</label>
-            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
+            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_GET["email"]) ? $_GET["email"] : ''; ?>" required>
           </div>
     
           <div class="form-group">
@@ -76,6 +91,7 @@
       </div>
     </body>
     </html>
-    HTML;
+  <?php
   }
+  ?>
 

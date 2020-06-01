@@ -1,6 +1,3 @@
-<?php
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,20 +75,33 @@
     <!-- Sign Up Form -->
     <form method="POST" action="sign-up.php">
 
+      <?php 
+      
+        //Set error message for failed sign up
+        if(isset($_GET['error'])){
+          $errorType = $_GET['error'];
+
+          if($errorType == "existingemail"){
+            echo '<p class="error-message">There is an existing account with this email!</p>';
+          }
+
+          else if($errorType == "invalidemail"){
+            echo '<p class="error-message">This is not a valid email!</p>';
+          }
+
+          else if($errorType == "stillsignedin"){
+            echo '<p class="error-message">You are still logged in! <br/>Logout first before signing up a new member.</p>';
+          }
+        }
+
+      ?>
+
       <!-- Profile Info -->
       <div class="form-group" id="profile-info">
         <label for="profile-info">Enter Email & Password</label>
-        <?php 
-            if (isset($_GET['error'])){
-                if(isset($_GET['error']) == "existingemail"){
-                    echo '<p class="error-message">There is an existing account with this email!</p>';
-                }
 
-                else if(isset($_GET['error']) == "invalidemail"){
-                    echo '<p class="error-message">Invalid Email!</p>';
-                }
-            }
-        ?>
+        
+
         <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
         <input type="password" class="form-control" placeholder="Password" id="pswd" name="pswd" required>
         <input type="password" class="form-control" placeholder="Verify Password" id="pswd-verify" name="pswd-verify" required>
