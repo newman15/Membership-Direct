@@ -13,16 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   <script src="functions.js"></script>
-
-  <script>
-    $(document).ready(function(){
-      $("#sign-up-btn").hide();
-      $("#agree-btn").click(function(){
-        $("#sign-up-btn").show();
-      });
-    });
-
-  </script>
+  <script>termsAndConditions();</script>
 
   <style>
 
@@ -73,10 +64,10 @@
     <h1>Sign Up</h1><br /><br />
 
     <!-- Sign Up Form -->
-    <form method="POST" action="sign-up.php">
+    <form method="POST" name="sign-up-form" action="sign-up.php">
 
       <?php 
-      
+
         //Set error message for failed sign up
         if(isset($_GET['error'])){
           $errorType = $_GET['error'];
@@ -99,12 +90,10 @@
       <!-- Profile Info -->
       <div class="form-group" id="profile-info">
         <label for="profile-info">Enter Email & Password</label>
-
-        
-
         <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
         <input type="password" class="form-control" placeholder="Password" id="pswd" name="pswd" required>
-        <input type="password" class="form-control" placeholder="Verify Password" id="pswd-verify" name="pswd-verify" required>
+        <input type="password" class="form-control" placeholder="Verify Password" id="pswd-verify" name="pswd-verify" onchange='confirmPasswords();' required>
+        <span id='message'></span>
       </div><br /><br />
 
       <!-- Contact Info -->
