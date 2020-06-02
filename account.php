@@ -3,7 +3,7 @@
 
     if (!isset($_SESSION['sessionEmail']))
     {
-        header("location: login-page.html");
+        header("location: login-page.php");
         die();
     }
 
@@ -122,9 +122,6 @@
                     <a class="nav-link active" id="nav-link" data-toggle="tab" href="#about_me">About Me</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="nav-link" data-toggle="tab" href="#payment">Billing & Payment</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="nav-link" data-toggle="tab" href="#insurance">Insurance</a>
                 </li>
             </ul>
@@ -168,40 +165,7 @@
                         </div>
                     </div>
                 </div> <!--end About Me tab-->
-                
-                
-                <!-- Billing & Payment tab -->
-                <div id="payment" class="container tab-pane fade"><br/>
-                    <h3>Payment Status</h3>	
-                    <div class="flex-container">
-                        <div class="left-col">
-                            Current Standing:<br/>
-                            Payment Due:<br/>
-                        </div>
-                        <div>
-                            Good [PLACEHOLDER]<br/>
-                            $121.64 (December 31, 2021) [PLACEHOLDER]<br/>
-                            <button class="btn btn-primary">Pay Now</button> [PLACEHOLDER]
-                        </div>
-                    </div>
-                    <br/><br/><br/>
-                    
-                    <h3>Cards</h3>
-                    <a href=''>Add Card [PLACEHOLDER]</a>
-                    <div class="list-box">
-                        <div class="left-col">
-                            CARD 1<br/><br/><br/>
-                            CARD 2<br/><br/><br/>
-                        </div>
-                        <div>
-                            VISA ending in 1234 [PLACEHOLDER]<br/>Exp: 3/2022 [PLACEHOLDER]<br/><br/>
-                            VISA ending in 5678 [PLACEHOLDER]<br/>Exp: 8/2021 [PLACEHOLDER]<br/><br/>
-                            <br/>
-                        </div>
-                    </div>
-                    <br/>
-                    
-                </div>
+
                 <!-- Insurance tab -->
                 <div id="insurance" class="container tab-pane fade"><br>
                     <h3>Insurance</h3>
@@ -229,14 +193,16 @@
                             echo "<div class='left-col'>";
                             for ($i = 0; $i < count($vehicles); $i++)
                                 echo "Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><br/><br/>";
+                                //"Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><a href=''>Edit</a><br/><br/>";
 
-                            echo "</div>";
-                            echo "<div>";
+                            echo "</div><div>";
                             
                             for ($i = 0; $i < count($vehicles); $i++)
-                                echo $vehicles[$i][0]."<br/>".$vehicles[$i][1]."<br/>".$vehicles[$i][2]."<br/>".$vehicles[$i][3]."<br/>".$vehicles[$i][4]."<br/><br/><br/>";
-
-                            echo "</div>"
+                            {
+                                echo $vehicles[$i][0]."<br/>".$vehicles[$i][1]."<br/>".$vehicles[$i][2];
+                                echo "<br/>".$vehicles[$i][3]."<br/>".$vehicles[$i][4]."<br/><br/><br/>";
+                            }
+                            echo "</div>";
                         ?>
                     </div>
                

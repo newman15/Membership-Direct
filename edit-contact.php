@@ -6,7 +6,7 @@
 
     if(!isset($_SESSION['sessionEmail']))
     {
-        header("location: login-page.html");
+        header("location: login-page.php");
         die();
     }
 
@@ -119,7 +119,7 @@
 
             <div class="flex-container">
                 <div class="left-col">State:</div>
-                <div><input type="text" name="state" value ="<?php echo $state ?>" required></div>
+                <div><input type="text" name="state" value ="<?php echo $state ?>" minlength="2" maxlength="2" placeholder="AK" required></div>
             </div>
 
             <div class="flex-container">
