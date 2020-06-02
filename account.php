@@ -3,7 +3,7 @@
 
     if (!isset($_SESSION['sessionEmail']))
     {
-        header("location: login-page.html");
+        header("location: login-page.php");
         die();
     }
 
