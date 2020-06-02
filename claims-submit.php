@@ -15,7 +15,7 @@
             $shopName = $_POST["auto-shop-name"],
             $shopAddress = $_POST["shop-address"],
             $shopCity = $_POST["shop-city"],
-            $shopState = $_POST["shop-state"],
+            $shopState = $_POST["state"],
             $shopZip = $_POST["shop-zip"],
             $deductibleAmount = $_POST["ded-amount"]
         );

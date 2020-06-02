@@ -29,17 +29,12 @@
             // Get Vehicle Info
             $stmt2 = $dbh->prepare("SELECT make, model, year FROM vehicle WHERE member_id=?");
             $stmt2->execute([$memberId]);
-            $user = $stmt2->fetch();
+            $userVehicles = $stmt2->fetchAll();
 
             // Checks if DB returned any data at all
             // If so, then store vehicle info in user array
-            if($user){
-                $userVehicle[0] = $user['make'];
-                $userVehicle[1] = $user['model'];
-                $userVehicle[2] = $user['year'];
-            }
-            else{
-                echo "INVALID!";
+            if(!$userVehicles){
+                echo "Error: No Vehicles Registered";
             }
 
             $dbh = null;
@@ -62,6 +57,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script src="functions.js"></script>
         <style>
             a.nav-link:hover, a.nav-link:active{
                 font-size: 150%;
@@ -81,7 +77,13 @@
                     <div class="form-group">
                         <label for="vehicle-choice">Choose Vehicle (select one):</label>
                         <select class="form-control" id="vehicle-choice" name="vehicle-choice">
-                            <option>$userVehicle[2] $userVehicle[0] $userVehicle[1]</option>
+                            <!-- <option>$userVehicle[2] $userVehicle[0] $userVehicle[1]</option> -->
+        HTML;    
+                            for ($i = 0; $i < count($userVehicles); $i++){ ?>
+                                <option value="<?php echo $userVehicles[$i][2]." ".$userVehicles[$i][0]." ".$userVehicles[$i][1]; ?>"><?php echo $userVehicles[$i][2]." ".$userVehicles[$i][0]." ".$userVehicles[$i][1]; ?></option>
+                            <?php 
+                            }
+        echo <<<HTML
                         </select>
                     </div><br /><br />
                     <!-- Auto Shop Info -->
@@ -90,7 +92,9 @@
                         <input type="text" class="form-control" placeholder="Enter Auto Shop Name" id="auto-shop-name" name="auto-shop-name" required>
                         <input type="text" class="form-control" placeholder="Enter Shop Address" id="shop-address" name="shop-address" required>
                         <input type="text" class="form-control" placeholder="Enter Shop City" id="shop-city" name="shop-city" required>
-                        <input type="text" class="form-control" placeholder="Enter Shop State" id="shop-state" name="shop-state" required>
+                        <select class="form-control" id="state" name="state" required>
+                            <script>populateStates();</script>
+                        </select>
                         <input type="text" class="form-control" placeholder="Enter Shop Zip" id="shop-zip" name="shop-zip" required>
                         <input type="number" class="form-control" placeholder="Enter Deductible Amount" id="ded-amount" name="ded-amount" step="0.01" required>
                     </div><br /><br />

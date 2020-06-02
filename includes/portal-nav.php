@@ -14,12 +14,12 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav" style="list-style-type:none">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="policy.php">Policy</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="billing.php">Billing</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="account.php">Account</a>
                 </li>

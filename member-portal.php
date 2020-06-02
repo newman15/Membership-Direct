@@ -25,7 +25,7 @@
             $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             echo "<br/><br/>";
             
-            // SQL Email Check
+            // Email Check
             $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
             $stmt->execute([$userEmail]);
             $user = $stmt->fetch();
@@ -33,6 +33,7 @@
             // Checks if DB returned any data at all
             // If so, then compare passwords
             if($user){
+
                 $firstName = $user['first_name'];
                 $lastName = $user['last_name'];
                 $accountNum = $user['member_id'];
@@ -41,6 +42,13 @@
                 $memberSince = $user['member_since'];
                 $typeStatus = array("", "");
                 $actStatus = array("", "");
+
+                // Number of Vehicles
+                $getVehicleNum = $dbh->prepare("SELECT COUNT(*) FROM vehicle WHERE member_id=?");
+                $getVehicleNum->execute([$accountNum]);
+                $numVehicles = $getVehicleNum->fetchColumn();
+                // $numVehicles = count($storeNum);
+                $getVehicleNum = null;
 
                 // Stores member type/status
                 if ($memberType == "Silver"){
@@ -134,7 +142,7 @@
                             </tr>
                             <tr>
                                 <th># Of Vehicles:</th>
-                                <th>2</th>
+                                <th>$numVehicles</th>
                             </tr>
                             <tr>
                                 <th>Account Status:</th>
