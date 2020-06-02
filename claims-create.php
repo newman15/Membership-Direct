@@ -82,8 +82,6 @@
                         <label for="vehicle-choice">Choose Vehicle (select one):</label>
                         <select class="form-control" id="vehicle-choice" name="vehicle-choice">
                             <option>$userVehicle[2] $userVehicle[0] $userVehicle[1]</option>
-                            <option>Vehicle 2</option>
-                            <option>Vehicle 3</option>
                         </select>
                     </div><br /><br />
                     <!-- Auto Shop Info -->

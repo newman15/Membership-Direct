@@ -34,6 +34,26 @@ function confirmPasswords(){
     }
 }
 
+// Function that populates a drop down list of state abreviations
+function populateStates(){
+    var states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+                "Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
+                "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri",
+                "Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina",
+                "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota",
+                "Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+
+    var select = document.getElementById('state');
+
+    for(var i = 0; i < states.length; i++){
+        var options = states[i];
+        var element = document.createElement("option");
+        element.textContent = options;
+        element.value = options;
+        select.appendChild(element);
+    }
+}
+
 // jQuery for Terms and Conditions
 function termsAndConditions(){
     $(document).ready(function(){

@@ -103,7 +103,10 @@
         <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="last-name" value="<?php echo isset($_GET["last-name"]) ? $_GET["last-name"] : ''; ?>" required>
         <input type="text" class="form-control" placeholder="Address" id="address" name="address" value="<?php echo isset($_GET["address"]) ? $_GET["address"] : ''; ?>" required>
         <input type="text" class="form-control" placeholder="City" id="city" name="city" value="<?php echo isset($_GET["city"]) ? $_GET["city"] : ''; ?>" required>
-        <input type="text" class="form-control" placeholder="State" id="state" name="state" value="<?php echo isset($_GET["state"]) ? $_GET["state"] : ''; ?>" required>
+        <select class="form-control" id="state" name="state">
+          <option>State</option><script>populateStates();</script>
+        </select>
+        <!-- <input type="text" class="form-control" placeholder="State" id="state" name="state" value="<?//php echo isset($_GET["state"]) ? $_GET["state"] : ''; ?>" required> -->
         <input type="number" class="form-control" placeholder="Zip Code" id="zip" name="zip" value="<?php echo isset($_GET["zip"]) ? $_GET["zip"] : ''; ?>" required>
         <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="contact-number" name="contact-number" value="<?php echo isset($_GET["contact-number"]) ? $_GET["contact-number"] : ''; ?>" required>
       </div><br /><br />
