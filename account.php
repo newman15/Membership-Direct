@@ -156,7 +156,7 @@
                     <div class="flex-container">
                         <div class="left-col">
                             Type:<br/>
-                            Status:<br/>
+                            Status:<br/><a href="policy-cancel.php">Cancel Policy</a>
                         </div>
                         
                         <div>
@@ -164,6 +164,7 @@
                             <?php echo $member_status ?><br/>
                         </div>
                     </div>
+                        
                 </div> <!--end About Me tab-->
 
                 <!-- Insurance tab -->
