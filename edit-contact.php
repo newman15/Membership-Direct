@@ -50,6 +50,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="functions.js"></script>
         <style>
             .top-link{
                 margin-left: 11%;
@@ -119,7 +120,9 @@
 
             <div class="flex-container">
                 <div class="left-col">State:</div>
-                <div><input type="text" name="state" value ="<?php echo $state ?>" minlength="2" maxlength="2" placeholder="AK" required></div>
+                <div><select class="form-control" id="state" name="state">
+                    <script>populateStates();</script></select>
+                </div>
             </div>
 
             <div class="flex-container">
