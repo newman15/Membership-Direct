@@ -31,9 +31,10 @@
         $user = $stmt->fetch();
 
         // SQL Vehicle
-        $getVehicles = $dbh->prepare("SELECT make, model, year, color, vin FROM vehicle WHERE member_id=?");
+        $getVehicles = $dbh->prepare("SELECT make, model, year, color, vin, vehicle_id FROM vehicle WHERE member_id=?");
         $getVehicles->execute([$memberId]);
         $vehicles = $getVehicles->fetchAll();
+        $_SESSION["vehicles"] = $vehicles;
 
         if ($user){
             $firstName = $user['first_name'];
@@ -193,8 +194,7 @@
                         <?php
                             echo "<div class='left-col'>";
                             for ($i = 0; $i < count($vehicles); $i++)
-                                echo "Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><br/><br/>";
-                                //"Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><a href=''>Edit</a><br/><br/>";
+                                echo "Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><a href='edit-vehicle.php?vehicle=".$i."'>Edit</a><br/><br/>";
 
                             echo "</div><div>";
                             
