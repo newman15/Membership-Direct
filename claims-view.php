@@ -25,27 +25,11 @@
             // SQL Email Check
             $stmt = $dbh->prepare("SELECT * FROM claims WHERE member_id=?");
             $stmt->execute([$memberId]);
-            $user = $stmt->fetch();
+            $user = $stmt->fetchAll();
 
             // Checks if DB returned any data at all
             // If so, store data to be shown on the webpage
             if($user){
-                $make = $user['make'];
-                $model = $user['model'];
-                $year = $user['year'];
-                $color = $user['color'];
-                $vin = $user['vin'];
-                $shopName = $user['shop_name'];
-                $shopAddress = $user['shop_address'];
-                $shopCity = $user['shop_city'];
-                $shopState = $user['shop_state'];
-                $shopZip = $user['shop_zip'];
-                $dedAmount = $user['deductible_amount'];
-                $status = $user['status'];
-
-                if ($status == NULL){
-                    $status = "No Status In DB (Set Status)";
-                }
 
                 // Show HTML
                 echo <<<HTML
@@ -71,34 +55,53 @@
                         text-align: center;
                         justify-content: center;
                     }
-                    h2{
+                    h1, h2{
                         text-align: center;
+                    }
+                    .list-box{
+                        display: block;
+                        margin-top: 25px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        height: 65%;
+                        width: 85%;
+                        background-color: #ebedf7;
+                        line-height: 2;
+                        overflow: auto;
                     }
                 </style>
                 </head>
                 <body>
-                    <br /><br />
-                    <h2>Your Claims</h2><br/><br/>
-                    <div class="flex-container" id="view-claims-list">
-                        <ul class="list-group">
-                            <li class="list-group-item"><strong>Vehicle</strong></li>
-                            <li class="list-group-item">$make</li>
-                            <li class="list-group-item">$model</li>
-                            <li class="list-group-item">$year</li>
-                            <li class="list-group-item">$color</li>
-                            <li class="list-group-item">$vin</li>
-                        </ul>
-                        <ul class="list-group">
-                            <li class="list-group-item"><strong>Auto Shop</strong></li>
-                            <li class="list-group-item">$shopName</li>
-                            <li class="list-group-item">$shopAddress</li>
-                            <li class="list-group-item">$shopCity</li>
-                            <li class="list-group-item">$shopState</li>
-                            <li class="list-group-item">$shopZip</li>
-                            <li class="list-group-item">$dedAmount</li>
-                            <li class="list-group-item">$status</li>
-                        </ul>
-                    </div>
+                <div class="list-box">
+                HTML;
+                    for($i = 0; $i < count($user); $i++){ ?>
+                            <div id="<?php echo $user[$i]['date_received'] ?>"><br/>
+                                <h1>Vehicle: <?php echo $user[$i]['year']." ".$user[$i]['make']." ".$user[$i]['model'] ?></h1><br/>
+                                <div class="flex-container" id="view-claims-list">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Vehicle</strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['make'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['model'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['year'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['color'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['vin'] ?></strong></li>
+                                    </ul><br/>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Auto Shop</strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['shop_name'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['shop_address'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['shop_city'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['shop_state'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['shop_zip'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['deductible_amount'] ?></strong></li>
+                                        <li class="list-group-item"><?php echo $user[$i]['status'] ?></strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                    <?php
+                    }
+                echo <<<HTML
+                </div>
                 </body>
                 </html>
                 HTML;

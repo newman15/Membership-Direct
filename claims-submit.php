@@ -10,6 +10,9 @@
         // Declare Session Variables
         $userEmail =  $_SESSION['sessionEmail'];
 
+        // User's vehicle selection
+        $vehicleSelection = $_POST["vehicle-id"];
+
         // Array to store form elements
         $claimForm = array(
             $shopName = $_POST["auto-shop-name"],
@@ -22,7 +25,8 @@
 
         // Array to store Claim Details
         $completedClaim = array(
-            0,0,"","","","",0,"","","","","","",0,0.00
+            // memberId, make, model, year, color, vin...
+            0,0,"","","","",0,"","","","","","",0,0.00,"Received"
         );
 
         // DB Interaction
@@ -44,14 +48,14 @@
             $userName = $getName->fetch();
 
             // Get Vehicle Info
-            $stmt2 = $dbh->prepare("SELECT make, model, year, color, vin FROM vehicle WHERE member_id=?");
-            $stmt2->execute([$memberId]);
+            $stmt2 = $dbh->prepare("SELECT make, model, year, color, vin FROM vehicle WHERE vehicle_id=?");
+            $stmt2->execute([$vehicleSelection]);
             $userVehicle = $stmt2->fetch();
 
-            // Commit Claim To DB
+            // Prepare Claim
             $submitClaim = $dbh->prepare("INSERT INTO claims (member_id, first_name, last_name, make, model, year,
-                color, vin, shop_name, shop_address, shop_city, shop_state, shop_zip, deductible_amount) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                color, vin, shop_name, shop_address, shop_city, shop_state, shop_zip, deductible_amount, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Checks if DB returned any data at all
             // If so, then store claim info in completedClaim array
@@ -67,7 +71,7 @@
                     $completedClaim[$i] = $claimForm[$i - 9];               
                 }
 
-                for ($i = 1; $i < 15; $i++){
+                for ($i = 1; $i < 16; $i++){
                     $submitClaim->bindParam($i, $completedClaim[$i]);
                 }
 

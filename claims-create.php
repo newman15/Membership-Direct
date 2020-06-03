@@ -27,7 +27,7 @@
             $memberId = $stmt->fetchColumn();
             
             // Get Vehicle Info
-            $stmt2 = $dbh->prepare("SELECT make, model, year FROM vehicle WHERE member_id=?");
+            $stmt2 = $dbh->prepare("SELECT make, model, year, vehicle_id FROM vehicle WHERE member_id=?");
             $stmt2->execute([$memberId]);
             $userVehicles = $stmt2->fetchAll();
 
@@ -77,10 +77,10 @@
                     <div class="form-group">
                         <label for="vehicle-choice">Choose Vehicle (select one):</label>
                         <select class="form-control" id="vehicle-choice" name="vehicle-choice">
-                            <!-- <option>$userVehicle[2] $userVehicle[0] $userVehicle[1]</option> -->
         HTML;    
                             for ($i = 0; $i < count($userVehicles); $i++){ ?>
-                                <option value="<?php echo $userVehicles[$i][2]." ".$userVehicles[$i][0]." ".$userVehicles[$i][1]; ?>"><?php echo $userVehicles[$i][2]." ".$userVehicles[$i][0]." ".$userVehicles[$i][1]; ?></option>
+                                <option value="<?php echo $userVehicles[$i]['year']." ".$userVehicles[$i]['make']." ".$userVehicles[$i]['model']; ?>"><?php echo $userVehicles[$i]['year']." ".$userVehicles[$i]['make']." ".$userVehicles[$i]['model']; ?></option>
+                                <?php $userSelection = $userVehicles[$i]['vehicle_id']; ?>
                             <?php 
                             }
         echo <<<HTML
@@ -97,12 +97,8 @@
                         </select>
                         <input type="text" class="form-control" placeholder="Enter Shop Zip" id="shop-zip" name="shop-zip" required>
                         <input type="number" class="form-control" placeholder="Enter Deductible Amount" id="ded-amount" name="ded-amount" step="0.01" required>
+                        <input type="hidden" name="vehicle-id" value="$userSelection">
                     </div><br /><br />
-                    <!-- Upload Insurance Doc
-                    <div class="form-group" id="upload-claim">
-                        <label for="upload-claim-document">Upload proof of insurance claim</label>
-                        <input type="file" class="form-control-file border" id="insurance-claim-doc" name="insurance-claim-doc">
-                    </div><br /><br /> -->
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
