@@ -8,7 +8,7 @@
     }
     
     // Import Nav Bar
-    require "includes/portal-nav.php";
+    require "portal-nav.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

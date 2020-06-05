@@ -64,7 +64,7 @@
     <h1>Sign Up</h1><br /><br />
 
     <!-- Sign Up Form -->
-    <form method="POST" name="sign-up-form" action="sign-up.php">
+    <form method="POST" action="sign-up.php">
 
       <?php 
 
@@ -73,7 +73,7 @@
           $errorType = $_GET['error'];
 
           if($errorType == "existingemail"){
-            echo '<p class="error-message">There is an existing account with this email!</p>';
+            echo '<p class="error-message">There is already an existing account with this email!</p>';
           }
 
           else if($errorType == "invalidemail"){

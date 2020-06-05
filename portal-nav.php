@@ -24,7 +24,7 @@
                     <a class="nav-link" href="account.php">Account</a>
                 </li>
                 <div style="position: absolute; right: 50;">
-                    <form action="includes/logout.php" method="POST">
+                    <form action="logout.php" method="POST">
                         <button class="btn btn-outline-secondary" style="float:right" type="submit" name="logout-btn">Logout</button>
                     </form>
                 </div>

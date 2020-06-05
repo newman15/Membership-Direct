@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     // Check if user has logged in using 'login' page btn
     // Protects against person entering via URL Manipulation
     if (isset($_POST['login-btn'])){
@@ -10,13 +10,12 @@
 
         // If user left a field empty
         if(empty($email) || empty($pswd)){
-            header("Location: ../login-page.php");
+            header("Location: login-page.php");
             exit();
         }
 
         // Else continue with login
         else{
-            echo"Field is not empty. You are entering SQL Check Now...";
 
             // DB Interaction
             try{
@@ -24,7 +23,6 @@
                 require "db-info.php";
                 $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
                 $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-                echo "<br/><br/>";
                 
                 // SQL Email Check
                 $stmt = $dbh->prepare("SELECT * FROM member WHERE email=?");
@@ -34,11 +32,10 @@
                 // Stored hashed password from database
                 $hashedPass = $user['password'];
 
-                // Just for testing purposes
+                // No account matching entered credentials
                 if(!$user){
-                    // If email is already registered, return user to sign up page
-                    header("Location: ../login-page.php?error=failedlogin&email=".$email);
-                    exit(); // Stop script if duplicate email detected
+                    header("Location: login-page.php?error=noaccount&email=".$email);
+                    exit(); // Stop script if no email detected
                 }
 
                 // Checks if DB returned any data at all
@@ -47,15 +44,15 @@
 
                     // User has signed in successfully
                     // Create a session variable
-                    session_start();
                     $_SESSION['sessionEmail'] = $user['email'];
                     $_SESSION['sessionName'] = $user['first_name'];
-                    header("Location: ../member-portal.php");
+                    header("Location: member-portal.php");
 
                 }
+
+                // Username and Password do not match
                 else{
-                    echo "INVALID USERNAME OR PASSWORD!     ";
-                    echo '<a class="btn btn-large btn-primary" href="../login-page.php" style="font-size: 100%; border-color: rgb(252, 252, 252); border-width: thick;">Return To Login</a>';
+                    header("Location: login-page.php?error=failedlogin&email=".$email);
                 }
     
                 $dbh = null;
@@ -71,8 +68,7 @@
     else{
 
         // // Sends user back to home page if using URL Manipulation
-        // header("Location: ../login-page.html");
-        echo "ERROR! You did not login via the login page btn";
+        header("Location: index.html");
         exit();
         
     }

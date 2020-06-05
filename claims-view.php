@@ -2,7 +2,7 @@
     session_start();
 
     // Import Nav Bar
-    require "includes/portal-nav.php";
+    require "portal-nav.php";
 
     if(isset($_SESSION['sessionEmail'])){
 
@@ -12,7 +12,7 @@
         // DB Interaction
         try{
             // Connection to DB
-            require "includes/db-info.php";
+            require "db-info.php";
             $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
             $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             echo "<br/><br/>";

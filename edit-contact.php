@@ -2,7 +2,7 @@
     session_start();
 
     // Import Nav Bar
-    require "includes/portal-nav.php";
+    require "portal-nav.php";
 
     if(!isset($_SESSION['sessionEmail']))
     {
@@ -22,7 +22,7 @@
     $zip_code = "";
 
     // Connection to DB
-    require "includes/db-info.php";
+    require "db-info.php";
     $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
     
     // SQL Email Check

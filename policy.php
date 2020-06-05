@@ -2,7 +2,7 @@
     session_start();
 
     // Import Nav Bar
-    require "includes/portal-nav.php";
+    require "portal-nav.php";
 ?>
 
 <!DOCTYPE html>

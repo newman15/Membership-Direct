@@ -8,7 +8,7 @@
     }
         
     // Import Nav Bar
-    require "includes/portal-nav.php";
+    require "portal-nav.php";
 
     // Declare Session Variables
     $userEmail =  $_SESSION['sessionEmail'];
@@ -16,7 +16,7 @@
     // DB Interaction
     try{
         // Connection to DB
-        require "includes/db-info.php";
+        require "db-info.php";
         $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
         $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
         echo "<br/><br/>";
@@ -37,6 +37,7 @@
         $stmt2 = $dbh->prepare("DELETE FROM vehicle WHERE member_id=?");
         $stmt2->execute([$memberId]);      
         
+        session_unset();
         session_destroy();
 
     } catch(PDOException $e){       // Need to set_exception_handler() to protect DB

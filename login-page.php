@@ -1,7 +1,4 @@
 <?php
-
-  // User has signed in successfully
-  // Create a session variable
   session_start();
 
   if(isset($_SESSION['sessionEmail'])){
@@ -57,15 +54,21 @@
       <div class="container">
         <h2 id="form-title">Member Login</h2>
     
-        <form method="POST" action="includes/login.php">
+        <form method="POST" action="login.php">
           <div class="form-group">
 
             <?php
               // Set error message for an failed login 
               if (isset($_GET['error'])){
-                  if(isset($_GET['error']) == "failedlogin"){
-                      echo '<p class="error-message">Invalid email or password!</p>';
-                  }
+
+                $errorType = $_GET['error'];
+
+                if($errorType == "noaccount"){
+                    echo '<p class="error-message">There is no registered account under this email!</p>';
+                }
+                else if($errorType == "failedlogin"){
+                    echo '<p class="error-message">Email and password do not match!</p>';
+                }
               }
             ?>
 

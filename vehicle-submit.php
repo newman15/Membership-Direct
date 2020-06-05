@@ -10,7 +10,7 @@
     $userEmail = $_SESSION['sessionEmail'];
 
     // Connection to DB        
-    require "includes/db-info.php";
+    require "db-info.php";
     $dbh = new PDO("mysql:host=$serverName; dbname=$dbName", $userName, $password);
     $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
