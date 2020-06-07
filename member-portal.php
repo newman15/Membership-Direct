@@ -92,9 +92,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <style>
             .policy-table{
                 text-align: center;
@@ -108,16 +107,8 @@
                 max-width: 100%;
                 height: auto;
             }
-            .payment-reminder, .claims-reminder {
-            box-sizing: border-box;
-            width: 450px;
-            height: 550px;
-            padding: 10px;  
-            border: 10px solid black;
-            }
-            .flex-cards{
-                margin-right: 24%;
-                margin-left: 24%;
+            #welcome-message, h3{
+                text-align: center;
             }
         </style>
         </head>
@@ -125,73 +116,72 @@
         <br />
         <!--Welcome Message-->
         <div id="welcome-message">
-            <center><h1>Welcome $firstName $lastName</h1></center><br /><br /><br />
+            <h1>Welcome $firstName $lastName</h1><br /><br /><br />
         </div>
         <!-- Member Policy Table -->
-        <center><h3>Account Overview</h3></center>
-            <div class="policy-table">
-                <table class="table table-bordered table-hover">
-                        <tbody>
-                            <tr>
-                                <th>Account Number:</th>
-                                <th>000$accountNum</th>
-                            </tr>
-                            <tr>
-                                <th>Membership Type:</th>
-                                <th>$typeStatus[0] $typeStatus[1]</th>
-                            </tr>
-                            <tr>
-                                <th># Of Vehicles:</th>
-                                <th>$numVehicles</th>
-                            </tr>
-                            <tr>
-                                <th>Account Status:</th>
-                                <th>$actStatus[0] $actStatus[1]</th>
-                            </tr>
-                        </tbody>
-                </table>
-            </div>
-            
+        <h3>Account Overview</h3>
+        <div class="policy-table">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th>Account Number:</th>
+                        <th>000$accountNum</th>
+                    </tr>
+                    <tr>
+                        <th>Membership Type:</th>
+                        <th>$typeStatus[0] $typeStatus[1]</th>
+                    </tr>
+                    <tr>
+                        <th># Of Vehicles:</th>
+                        <th>$numVehicles</th>
+                    </tr>
+                    <tr>
+                        <th>Account Status:</th>
+                        <th>$actStatus[0] $actStatus[1]</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!-- Flex Cards -->
         <br /><br /><br /><br />
-        <div class="flex-cards">
-            <div class="d-flex p-2 flex-wrap justify-content-around">
+        <div class="container">
+            <div class="card-deck">
                 <!-- Payment Reminder Card -->
-                <div class="payment-reminder">
-                    <center><h3>Next Payment</h3></center><br />
-                    <div class="payment-card" style="width:400px">
-                        <img class="card-img-top" src="img/payReminder.jpg" alt="image_unavail" style="width:100%">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h3>Next Payment</h3><br />
+                        <img class="card-img-top" src="img/payReminder.jpg" alt="image_unavail">
                         <div class="card-body">
-                            <center>
                             <h4 class="card-title">$firstName,</h4>
                             <p class="card-text">Your next payment is due:</p>
                             <p class="card-date"><strong>Jan 1, 2020</strong></p>
                             <a href="payment.php" class="btn btn-success">Make Payment Now</a>
-                            </center>
-                        </div>   
-                    </div>
+                        </div>
+                    </div>   
                 </div>
-                
                 <!-- Claims Section -->
-                <br /><br /><br />
-                    <div class="claims-reminder">
-                        <center><h3>Claims</h3></center><br />
-                        <div class="claims-card" style="width:400px">
-                            <img class="card-img-top" src="img/claims_image.jpg" alt="image_unavail" style="width:100%">
-                            <div class="card-body"><br />
-                                <p><strong>*Note: It can take up to 48 hours for a claim to appear in your portal.</strong></p>
-                                <br />
-                                <div class="d-flex p-2 text-white justify-content-around">  
-                                    <a href="claims-create.php" type="button" class="btn btn-primary btn-md">Submit New</a>
-                                    <a href="claims-view.php" type="button" class="btn btn-primary btn-md">View Existing</a>
-                                </div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h3>Claims</h3><br />
+                        <img class="card-img-top" src="img/claims_image.jpg" alt="image_unavail">
+                        <div class="card-body"><br />
+                            <p><strong>*Note: It can take up to 48 hours for a claim to appear in your portal.</strong></p>
+                            <br />
+                            <div class="d-flex p-2 text-white justify-content-around">  
+                                <a href="claims-create.php" type="button" class="btn btn-primary btn-md">Submit New</a>
+                                <a href="claims-view.php" type="button" class="btn btn-primary btn-md">View Existing</a>
                             </div>
                         </div>
-                    </div>        
+                    </div>
+                </div>      
                 <!---->
             </div>
         </div>   
         <br /><br />
+        <!-- Bootstrap Dox Requires Code Placement Here -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         </body>
         </html> 
         HTML;
@@ -200,7 +190,6 @@
 
     // Session Not Active
     else{
-        //echo "Session Failed Check";
         header("Location: login-page.php");
     }
 ?>

@@ -25,7 +25,9 @@
 
 <body>
     <br /><br />
-    <center><h1>This is the Payment Webpage</h1></center>
+    <center><h1>Your payments are up to date!</h1></center>
+
+    
 </body>
 
 </html>

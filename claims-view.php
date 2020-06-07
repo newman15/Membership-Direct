@@ -93,7 +93,7 @@
                                         <li class="list-group-item"><?php echo $user[$i]['shop_city'] ?></strong></li>
                                         <li class="list-group-item"><?php echo $user[$i]['shop_state'] ?></strong></li>
                                         <li class="list-group-item"><?php echo $user[$i]['shop_zip'] ?></strong></li>
-                                        <li class="list-group-item"><?php echo $user[$i]['deductible_amount'] ?></strong></li>
+                                        <li class="list-group-item">$<?php echo $user[$i]['deductible_amount'] ?></strong></li>
                                         <li class="list-group-item"><?php echo $user[$i]['status'] ?></strong></li>
                                     </ul>
                                 </div>

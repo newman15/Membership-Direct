@@ -49,6 +49,10 @@
         font-weight: bold;
     }
 
+    select{
+      color: red;
+    }
+
   </style>
 </head>
 
@@ -83,6 +87,14 @@
           else if($errorType == "stillsignedin"){
             echo '<p class="error-message">You are still logged in! <br/>Logout first before signing up a new member.</p>';
           }
+
+          else if($errorType == "invalidstate"){
+            echo '<p class="error-message">Please select your state of residence!';
+          }
+
+          else if($errorType == "invalidcolor"){
+            echo '<p class="error-message">Please select your vehicle color!';
+          }
         }
 
       ?>
@@ -91,7 +103,7 @@
       <div class="form-group" id="profile-info">
         <label for="profile-info">Enter Email & Password</label>
         <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
-        <input type="password" class="form-control" placeholder="Password" id="pswd" name="pswd" required>
+        <input type="password" class="form-control" placeholder="Password" id="pswd" name="pswd" onchange='confirmPasswords();' required>
         <input type="password" class="form-control" placeholder="Verify Password" id="pswd-verify" name="pswd-verify" onchange='confirmPasswords();' required>
         <span id='message'></span>
       </div><br /><br />
@@ -104,9 +116,8 @@
         <input type="text" class="form-control" placeholder="Address" id="address" name="address" value="<?php echo isset($_GET["address"]) ? $_GET["address"] : ''; ?>" required>
         <input type="text" class="form-control" placeholder="City" id="city" name="city" value="<?php echo isset($_GET["city"]) ? $_GET["city"] : ''; ?>" required>
         <select class="form-control" id="state" name="state">
-          <option>State</option><script>populateStates();</script>
+          <option>Select State</option><script>populateStates();</script>
         </select>
-        <!-- <input type="text" class="form-control" placeholder="State" id="state" name="state" value="<?//php echo isset($_GET["state"]) ? $_GET["state"] : ''; ?>" required> -->
         <input type="number" class="form-control" placeholder="Zip Code" id="zip" name="zip" value="<?php echo isset($_GET["zip"]) ? $_GET["zip"] : ''; ?>" required>
         <input type="tel" class="form-control" placeholder="Phone Number (111-222-3333)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="contact-number" name="contact-number" value="<?php echo isset($_GET["contact-number"]) ? $_GET["contact-number"] : ''; ?>" required>
       </div><br /><br />
@@ -117,7 +128,9 @@
         <input type="text" class="form-control" placeholder="Vehicle Make" id="vehicle-make" name="vehicle-make" value="<?php echo isset($_GET["vehicle-make"]) ? $_GET["vehicle-make"] : ''; ?>" required>
         <input type="text" class="form-control" placeholder="Vehicle Model" id="vehicle-model" name="vehicle-model" value="<?php echo isset($_GET["vehicle-model"]) ? $_GET["vehicle-model"] : ''; ?>" required>
         <input type="number" class="form-control" placeholder="Vehicle Year" id="vehicle-year" name="vehicle-year" value="<?php echo isset($_GET["vehicle-year"]) ? $_GET["vehicle-year"] : ''; ?>" required>
-        <input type="text" class="form-control" placeholder="Vehicle Color" id="vehicle-color" name="vehicle-color" value="<?php echo isset($_GET["vehicle-color"]) ? $_GET["vehicle-color"] : ''; ?>" required>
+        <select class="form-control" id="vehicle-color" name="vehicle-color">
+          <option>Select Color</option><script>populateColors();</script>
+        </select>
         <input type="text" class="form-control" placeholder="Vehicle Vin" id="vehicle-vin" name="vehicle-vin" value="<?php echo isset($_GET["vehicle-vin"]) ? $_GET["vehicle-vin"] : ''; ?>" minlength="17" maxlength="17" required>
         <input type="text" class="form-control" placeholder="Insurance Provider" id="insur-prov" name="insur-prov" value="<?php echo isset($_GET["insur-prov"]) ? $_GET["insur-prov"] : ''; ?>" required>
         <input type="number" class="form-control" placeholder="Policy Number" id="pol-num" name="pol-num" value="<?php echo isset($_GET["pol-num"]) ? $_GET["pol-num"] : ''; ?>" required>

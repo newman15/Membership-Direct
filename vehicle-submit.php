@@ -24,7 +24,7 @@
         $make = $_POST["make"],
         $model = $_POST["model"],
         $year = $_POST["year"],
-        $color = $_POST["color"],
+        $color = $_POST["vehicle-color"],
         $vin = $_POST["vin"]
     );
 

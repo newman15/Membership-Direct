@@ -29,12 +29,12 @@ function confirmPasswords(){
     }
     else{
         document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'Passwords do NOT match. Please retype password';
+        document.getElementById('message').innerHTML = 'Passwords do NOT match';
         document.getElementById('sign-up-btn').disabled = true;
     }
 }
 
-// Function that populates a drop down list of state abreviations
+// Function that populates a drop down list of state names
 function populateStates(){
     var states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
                 "Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
@@ -47,6 +47,22 @@ function populateStates(){
 
     for(var i = 0; i < states.length; i++){
         var options = states[i];
+        var element = document.createElement("option");
+        element.textContent = options;
+        element.value = options;
+        select.appendChild(element);
+    }
+}
+
+// Function that populates drop down of colors
+function populateColors(){
+    var colors = ["White", "Black", "Grey", "Yellow", "Red", "Blue", "Green",
+                "Brown", "Pink", "Orange", "Purple"];
+
+    var select = document.getElementById('vehicle-color');
+
+    for(var i = 0; i < colors.length; i++){
+        var options = colors[i];
         var element = document.createElement("option");
         element.textContent = options;
         element.value = options;

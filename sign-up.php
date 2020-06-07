@@ -181,6 +181,24 @@
             exit(); // Stop script if invalid email detected
         }
 
+        // If user did not fill in State
+        else if($state == "Select State"){
+            header("Location: sign-up-page.php?error=invalidstate&first-name=".$firstName."&last-name=".$lastName.
+                    "&address=".$address."&city=".$city."&state=".$state."&zip=".$zipCode."&contact-number=".$phoneNum."&vehicle-make=".
+                    $vehicleMake."&vehicle-model=".$vehicleModel."&vehicle-year=".$vehicleYear."&vehicle-color=".
+                    $vehicleColor."&vehicle-vin=".$vehicleVin."&insur-prov=".$insuranceProvider."&pol-num=".$policyNum);
+            exit(); // Stop script if invalid email detected
+        }
+
+        // If user did not fill in Color
+        else if($vehicleColor == "Select Color"){
+            header("Location: sign-up-page.php?error=invalidcolor&first-name=".$firstName."&last-name=".$lastName.
+                    "&address=".$address."&city=".$city."&state=".$state."&zip=".$zipCode."&contact-number=".$phoneNum."&vehicle-make=".
+                    $vehicleMake."&vehicle-model=".$vehicleModel."&vehicle-year=".$vehicleYear."&vehicle-color=".
+                    $vehicleColor."&vehicle-vin=".$vehicleVin."&insur-prov=".$insuranceProvider."&pol-num=".$policyNum);
+            exit(); // Stop script if invalid email detected
+        }
+
         // Otherwise, continue with sign up process
         else{
             // Statement for Member Table
