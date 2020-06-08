@@ -1,5 +1,32 @@
+
+<style>
+    #banner { 
+        width:100%;
+    }
+
+    /* Mobile padding s*/
+    @media only screen and (min-width: 0px) { 
+        #banner {
+            padding: 0;
+        }
+    }
+
+    @media only screen and (min-width: 801px) { 
+        #banner {
+            padding: 0 15% 0 15%;
+        }
+    }
+
+    @media only screen and (min-width: 1401px) { 
+        #banner {
+            padding: 0 25% 0 25%;
+        }
+    }
+
+</style>
+
 <center>
-    <img src="img/banner_1.jpg" alt="banner_unavail">
+    <img id="banner" src="img/banner_1.jpg" alt="banner_unavail">
 </center>
     
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">

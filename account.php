@@ -97,18 +97,30 @@
         line-height: 2;
         margin:25px;
     }
+    
     .list-box{
         display: flex;
         flex-direction: row;
         line-height: 2;
-        margin:25px;
-        height: 200px;
+        margin: 2%;
+        height: 25%;
         overflow: auto;
     }
-    .left-col{
-        font-weight: bold;
+
+    .tab-content h4 {
+        padding:1%;
+    }
+
+    #test th{
+        border-style: none;
         width:15%;
     }
+
+    #test td{
+        border-style: none;
+        vertical-align: middle;
+    }
+
 </style>
 </head>
 <body>
@@ -127,87 +139,64 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                
                 <!-- About Me tab -->
-                <div id="about_me" class="container tab-pane active"><br/>
-                    <h3>Contact </h3>	
-                    <div class="flex-container">
-                        <div class="left-col">
-                            Full Name:<br/>
-                            Email:<br/>
-                            Phone Number:<br/>
-                            Address:<br/>
-                            State:<br/>
-                            Zip Code:<br/>
-                            <a href="edit-contact.php">Edit</a>
-                        </div>
-                        <div>
-                            <?php echo $firstName . " " . $lastName ?><br/>
-                            <?php echo $email ?><br/>
-                            <?php echo $phone_number ?><br/>
-                            <?php echo $address ?><br/>
-                            <?php echo $state ?><br/>
-                            <?php echo $zip_code ?><br/>
-                        </div>
-                    </div>
-                    
-                    <br/><br/>
-                    <h3>Membership</h3>	
-                    <div class="flex-container">
-                        <div class="left-col">
-                            Type:<br/>
-                            Status:<br/><a href="policy-cancel.php">Cancel Policy</a>
-                        </div>
-                        
-                        <div>
-                            <?php echo $member_type ?><br/>
-                            <?php echo $member_status ?><br/>
-                        </div>
-                    </div>
-                        
+                <div id="about_me" class="container tab-pane active">
+                    <table class="table" id="test">
+                    <h4>Contact</h4>
+                        <tbody>
+                            <tr><th>Full Name:</th><td><?php echo $firstName . " " . $lastName ?></td></tr>
+                            <tr><th>Email:</th><td><?php echo $email ?></td></tr>
+                            <tr><th>Phone Number:</th><td><?php echo $phone_number ?></td></tr>
+                            <tr><th>Address:</th><td><?php echo $address ?></td></tr>
+                            <tr><th>State:</th><td><?php echo $state ?></td></tr>
+                            <tr><th>Zip Code:</th><td><?php echo $zip_code ?></td></tr>
+                            <tr><th><a href="edit-contact.php">Edit</a></th></tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table" id="test">
+                    <h4>Membership</h4>
+                        <tbody>
+                            <tr><th>Type:</th><td><?php echo $member_type ?></td></tr>
+                            <tr><th>Status:</th><td><?php echo $member_status ?></td></tr>
+                            <tr><th><a href="policy-cancel.php">Cancel Policy</a></th></tr>
+                        </tbody>
+                    </table>
                 </div> <!--end About Me tab-->
 
                 <!-- Insurance tab -->
-                <div id="insurance" class="container tab-pane fade"><br>
-                    <h3>Insurance</h3>
-                    <div class="flex-container">
-                        <div class="left-col">
-                            Provider:<br/>
-                            Policy Number:<br/>
-                            Number of Claims:<br/>
-                            Business ID:<br/>
-                        </div>
-                        
-                        <div>
-                            <?php echo $provider ?><br/>
-                            <?php echo $policy_number ?><br/>
-                            <?php echo $number_of_claims ?><br/>
-                            <?php echo $business_id ?><br/>
-                        </div>
-                    </div>
-                    <br/><br/>
-                    
-                    <h3>Vehicle(s)</h3>
+                <div id="insurance" class="container tab-pane fade">
+                    <table class="table" id="test">
+                    <h4>Insurance</h4>
+                        <tbody>
+                            <tr><th>Provider:</th><td><?php echo $provider ?></td></tr>
+                            <tr><th>Policy Number:</th><td><?php echo $policy_number ?></td></tr>
+                            <tr><th>Number of Claims:</th><td><?php echo $number_of_claims ?></td></tr>
+                            <tr><th>Business ID:</th><td><?php echo $business_id ?></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Vehicle(s)</h4>
                     <a class="btn btn-primary" href="add-vehicle.php">Add Vehicle</a>
                     <div class="list-box">
                         <?php
-                            echo "<div class='left-col'>";
-                            for ($i = 0; $i < count($vehicles); $i++)
-                                echo "Make:<br/>Model:<br/>Year:<br/>Color:<br/>VIN:<br/><a href='edit-vehicle.php?vehicle=".$i."'>Edit</a><br/><br/>";
+                            echo "<table class='table' id='test'>";
 
-                            echo "</div><div>";
-                            
                             for ($i = 0; $i < count($vehicles); $i++)
                             {
-                                echo $vehicles[$i][0]."<br/>".$vehicles[$i][1]."<br/>".$vehicles[$i][2];
-                                echo "<br/>".$vehicles[$i][3]."<br/>".$vehicles[$i][4]."<br/><br/><br/>";
+                                echo "<tbody>";
+                                echo "<tr><th>Make:</th><td>".$vehicles[$i][0]."</td></tr>";
+                                echo "<tr><th>Model:</th><td>".$vehicles[$i][1]."</td></tr>";
+                                echo "<tr><th>Year:</th><td>".$vehicles[$i][2]."</td></tr>";
+                                echo "<tr><th>Color:</th><td>".$vehicles[$i][3]."</td></tr>";
+                                echo "<tr><th>VIN:</th><td>".$vehicles[$i][4]."</td></tr>";
+                                echo "<tr><th><a href='edit-vehicle.php?vehicle=".$i."'>Edit</a></th></tr>";
+                                echo "<tr><th></th></tr>";
                             }
-                            echo "</div>";
+                            echo "</table>";
                         ?>
                     </div>
-               
-            </div>
+                </div> <!--end Insurance tab-->
         </div>
-        <br/><br/>
 </body>
 </html>
