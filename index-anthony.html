@@ -11,7 +11,7 @@ Version:    2.0
 <head>
   <title>Membership Direct</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> <!-- Top Link -->
@@ -20,181 +20,242 @@ Version:    2.0
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> <!-- Sans Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Google Icons -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
   <style>
-
-    .top-link{
-        padding: 2% 10% 2% 10%;
+    body, html {
+    height: 100%;
+    margin: 0;
     }
 
-    .welcome-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/street_lights_5.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 10% 25% 10% 25%;
+    #welcome-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/street_lights_5.jpg");
+    height: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 0 25% 0 25%; /* Pads like this when resolution is high */
     }
 
-        /* "All insured drivers welcome" */
-        .welcome-image p {
-            text-align: center;
-            color: white;
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 3px;
+    #road-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/road_2.jpg");
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    }
+
+    #footer-image{
+    background-image: url("img/home_page_footer.jpg");
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    }
+
+    #welcome-text p {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+    letter-spacing: 3px;
+    padding-top: 5%;
+    }
+
+    #welcome-text h2{
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: 3px;
+    padding-top: 5%;
+    }
+
+    #login-btn-home {
+    border-color: rgb(252, 252, 252); 
+    border-width: thick;
+    font-size: calc(30% + 1.0rem);
+    margin-top: 8%;
+    }
+
+    #top-link{
+    margin-left: 11%;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    }
+
+    #services{
+    text-align: center;
+    }
+
+    #accordian-title{
+    text-align: center;
+    }
+
+    #resp-time, #dir-payment, #easy-portal{
+        margin-top: 5rem;
+    }
+
+    #easy-portal, #find-out-images{
+        margin-bottom: 6rem;
+    }
+
+    #card-services{
+    margin-top: 8rem;
+    }
+
+    #client-container{
+    margin-right: 10px;
+    }
+
+    #client-text, #news-text{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    }
+
+    #footer-image{
+        margin-top: 6rem;
+    }
+
+    #contact-us{
+    margin-right: 50px;
+    }
+
+    #info-text{
+    text-align: left;
+    }
+
+    .more-info{
+    margin-left: 20%;
+    margin-right: 20%;
+    }
+
+    .card{
+    width: 100%;
+    }
+
+    .card-header{
+    text-align: center;
+    }
+
+    .btn{
+    background-color: #2b6f94;
+    }
+
+    .col-sm{
+    padding-top: 6rem;
+    }
+
+    .col-md{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    }
+
+    .i{
+    color:#2b6f94;
+    }
+
+    .news-links{
+        color: #2b6f94;
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+
+    /* Anthony's additions */
+        h1 {
             font-size: calc(.5em + 2vw);
-            background-color:rgba(0, 0, 0, 0.5)
+        }
+        h2 {
+            font-size: calc(.6em + 1.8vw);
+        }
+        h4 {
+            font-size: calc(.8em + .8vw);
+        }
+        p {
+            font-size: calc(.6em + 1.4vw);
         }
 
-        /* "Our memberships have your back" */
-        .welcome-image h1{
-            text-align: center;
-            color: white;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: calc(.5em + 1.5vw);
-            background-color:rgba(0, 0, 0, 0.5)
+        /* Mobile padding */
+        @media only screen and (max-width: 900px) { 
+            #welcome-image {
+                padding-left:5%;
+                padding-right:5%;
+            }
+
+            #services, #road-image {
+                padding: 0;
+            }
         }
+    /* End of Anthony's additions */
 
-    .login-button {
-        border-color: rgb(252, 252, 252); 
-        border-width: thick;
-        border-radius: 5px;
-        text-align: center;
-        font-size: calc(.8em + 1.2vw);
-        padding-top: 5%; 
-    }  
-
-    .services {
-        text-align: justify;
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-        .services p {
-            text-align: center;
-            padding: 25px 25px 0px 25px;
-            font-size: calc(.8em + .25vw);
-        }
-
-        .services h5 {
-            font-size: calc(.8em + .75vw);
-        }
-
-        /* "Our Statement" */
-        #our-services{
-            text-align: center;
-            font-size: calc(1em + 1.5vw);
-        }
-
-    #member-choice, #join-us {
-        padding: 5% 20% 5% 20%;
-    }
-
-    #member-choice, #join-us, #footer .card-text {
-        font-size: calc(1em + .25vw);
-    }
-
-    #join-us{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/road_2.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    /* Mobile padding s*/
-    @media only screen and (max-width: 900px) { 
-        #join-us {
-            padding-left:10%;
-            padding-right:10%;
-        }
-    }
-
-    @media only screen and (max-width: 801px) { 
-
-        .welcome-image {
-            padding-left: 10%;
-            padding-right: 10%;
-        }
-        
-        .services, #member-choice, #join-us {
-            padding: 5% 5% 5% 5%;
-        }
-    }
   </style>
+</head>
 
-  </head>
-  <body>
-      <div class="flex-container-fluid">
-            <div class="top-link">
-                <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Savings</h6></a>
-            </div>
+<body>
+    <br />
+    <!-- Top Link -->
+    <div class="container" id="top-link">
+        <a href="index.html" style="color: #333a3d;"><h5>Membership Direct</h5><h6>Deductible Savings</h6></a>
+    </div><br />
 
-            <div class="welcome-image">
-                
-                <p>ALL INSURED DRIVERS WELCOME</p>
-                <!-- <h1>Having your back when you expect it the least, but need it the most</h1> -->
-                <h1>Our memberships have your back when you expect it the least, but need it the most</h1>
-                <div class="login-button"><a class="btn btn-large btn-primary" href="login-page.php" style="font-size: 100%; border-color: rgb(252, 252, 252); border-width: thick;">Login</a></div>
-            </div>
+    <!-- Welcome Image -->
+    <div class="container-fluid" id="welcome-image">
+        <blockquote class="blockquote text-center" id="welcome-text">
+            <p class="mb-0">ALL INSURED DRIVERS WELCOME</p>
+            <h2>Our memberships have your back when you expect it the least, but need it the most</h2>
+            <a class="btn btn-primary btn-lg" href="login-page.php" id="login-btn-home">Login</a>
+        </blockquote>
+    </div><br /><br />
 
-            <div class="services">
-                <p>GET TO KNOW US</p><br />
-                <h1 id="our-services">Our Statement</h1><br />
-                <h5>
-                    It is our mission at Membership Direct to provide an additional solution to alleviate 
-                    the financial burdens that accidents can cause. For a low annual membership fee, users will 
-                    be able to choose their membership type that can be redeemed at any approved auto 
-                    repair shop of their choosing, after successfully filing a claim with their insurance 
-                    provider.
-                </h5>
-            </div>
-            
-            <!-- Member choice: silver or gold -->
-            <div id="member-choice">
-                <div class="card-deck">
-                    
-                    <!-- SILVER -->
-                    <div class="card">
-                        <img src="img/silver-coin.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Silver Membership</strong></h5>
-                            <p class="card-title">Average Driver Deductible</p>
-                            <i class="material-icons" style="color:#2b6f94"">star</i>Top Choice<br/><br/>
-                            <p class="card-text">Ideal for the driver whose out-of-pocket deductible is <strong>$500</strong> or less.</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="silver-membership.html" class="btn btn-primary stretched-link">Select</a>
-                        </div>
-                    </div>
+    <!-- Our Services -->
+    <div class="container" id="services">
+        <p>GET TO KNOW US</p><br />
+        <h1 id="our-services">Our Statement</h1><br />
+        <h5>
+            It is our mission at Membership Direct to provide an additional solution to alleviate 
+            the financial burdens that accidents can cause. For a low annual membership fee, users will 
+            be able to choose their membership type that can be redeemed at any approved auto 
+            repair shop of their choosing, after successfully filing a claim with their insurance 
+            provider.
+        </h5>
 
-                    <!-- GOLD -->
-                    <div class="card">
-                        <img src="img/gold_coin.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Gold Membership</strong></h5>
-                            <p class="card-title">High Deductible</p>
-                            <i class="material-icons" style="color:#2b6f94">star</i>Biggest Savings<br/><br/>
-                            <p class="card-text">Ideal for the driver whose out-of-pocket deductible is <strong>$1000</strong> or less.</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="gold-membership.html" class="btn btn-primary stretched-link">Select</a>
-                        </div>
+        <!-- Membership Cards - Links -->
+        <div class="container" id="card-services">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="img/silver-coin.jpg">
+                    <div class="card-body text-center">
+                        <h5 style="color: #2b6f94;">Silver Membership</h5><br />
+                        <p class="card-text"><strong>Average Driver Deductible</strong></p>
+                        <i class="material-icons" style="color:#2b6f94"">star</i>Top Choice<br/><br/>
+                        <p class="card-text">Ideal for the driver whose out-of-pocket deductible is <strong>$500</strong> or less.</p>
+                        <a href="silver-membership.html" class="btn btn-primary stretched-link">Select</a>
                     </div>
                 </div>
-            </div> <!-- END member-choice -->
+                <div class="card">
+                    <img class="card-img-top" src="img/gold_coin.jpg">
+                    <div class="card-body text-center">
+                        <h5 style="color: #2b6f94;">Gold Membership</h5><br />
+                        <p class="card-text"><strong>High Deductible</strong></p>
+                        <i class="material-icons" style="color:#2b6f94">star</i>Biggest Savings<br/><br/>
+                        <p class="card-text">Ideal for the driver whose out-of-pocket deductible is <strong>$1000</strong> or less.</p>
+                        <a href="gold-membership.html" class="btn btn-primary stretched-link">Select</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br/><br/><br/><br/>
 
-            
-            <!-- Why become a member? -->
-            <div id="join-us">
-                <div class="card-deck">
-                    
-                    <!-- Find out more about us -->
+    <!-- Road Image - More Info Section -->
+    <div class="container-fluid" id="road-image">
+        <div class="container" id="card-info">
+            <div class="row">
+                <div class="col-sm">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">Find out more about us</p>
-                            <h1 class="card-text">Why become a member?</h1><br />
-                            <h5 class="card-text">As automotive insurance prices continue to rise, we are here to offer additional financial options
+                            <p id="info-text">Find out more about us</p>
+                            <h1 id="info-text">Why become a member?</h1><br />
+                            <h4 id="info-text">As automotive insurance prices continue to rise, we are here to offer additional financial options
                                 to alleviate out-of-pocket costs.  
                                 <br /><br />
                                  
@@ -202,72 +263,164 @@ Version:    2.0
                                 costs before their insurance provider begins contributions. We provide our 
                                 members financial security and peace of mind by offering up to an average 80% savings on out-of-pocket
                                 repair expenses.<br/><br/>
-                                <!-- <li>An average 80% savings on deductible costs</li> 
-                                <li>Monthly savings can be up to $12/month</li>
-                                <li>Something else...</li><br/> -->
-                               <b>We are reshaping the auto industry, 
-                                and want to take you along for the ride!</b>
-                            </h5>
-                        </div>
-
-                        <!-- Collapsable messages -->
-                        <div class="card-footer text-center" style="height:50%;">
-                            <div id="accordion">
-                                <div class="card">
+    
+                                We are reshaping the auto industry, 
+                                and want to take you along for the ride!
+                            </h4>
+    
+                            <!-- Collapse Menu -->
+                            <div class="container" id="accordion">
+                                <div class="card" id="resp-time">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseOne">
                                         48 Hour Response Time
                                         </a>
                                     </div>
                                     <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
                                         We process claims within 48 hours of receipt. This ensures our members 
                                         get back on the road sooner and back to the things that matter most.
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="card">
+                                <div class="card" id="dir-payment">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
                                         Direct Payment
                                     </a>
                                     </div>
                                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
                                         Once a claim is 
                                         processed through your insurance, we will accept the deductible charges 
                                         based on your membership plan. All payments will be directly dispersed 
                                         to your auto-body shop, creating a seamless experience that ensures you’re 
                                         up and running the moment the repairs are completed.
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="card">
+                                <div class="card" id="easy-portal">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
                                         Easy Online Portal
                                         </a>
                                     </div>
                                     <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
                                         Manage your account and services through our easy to use online portal. 
                                         Our member portal is your one-stop-shop for all your membership needs. 
                                         View real time updates on your vehicle claim, change personal and payment 
                                         information, add more vehicles to your account, and speak with a customer 
                                         service representative. All this, and much more!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
+                </div>
 
-                    <!-- Images -->
-                    <div class="card align-self-center" style="background-color: rgba(0, 0, 0, 0); border-style:none;">
+                <div class="col-sm" id="find-out-images">
+                    <!-- Right Side Images -->
+                    <div class="card" style="background-color: black;">
                         <img class="img-responsive" src="img/money_1.jpg" style="width: 100%;">
                         <img class="img-responsive" src="img/drive_1.jpg" style="width: 100%;">
                         <img class="img-responsive" src="img/beach_1.jpg" style="width: 100%;">
                     </div>
                 </div>
-            </div> <!-- END join-us -->
+            </div>
+        </div>
+    </div>
 
-        </div> <!-- END flex-container -->
-  </body>
+    <!-- Becoming Our Client -->
+    <div class="container" id="client-advice-container">
+        <div class="row">
+            <div class="col-sm">
+                <p id="info-text">BECOMING OUR CLIENT</p>
+                <h1 id="info-text">What you'll need to qualify</h1><br />
+                <div id="client-text">
+                    Becoming a member takes only a few minutes. Simply choose
+                    from our membership plans and make sure you have the following
+                    readily available.
+                </div><br/>
+                
+                <div class="container">
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Proof of Insurance</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Valid Drivers License</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Registered Operational Vehicle</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Valid Credit Card</li>
+                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">done</i> Current Billing Address</li>
+                    </ul><br/><br/>
+                    <a href="#our-services" class="btn btn-primary" id="internal-link">Ready To Join?</a>
+                </div>
+            </div>
+    
+            <div class="col-sm" id="news-col">
+                <p id="info-text">NEWS</p>
+                <h1 id="info-text">Updates and Advice</h1><br />
+                <div id="news-text">
+                    Interested in learning more about insurance deductibles and how they play a role in your personal finances?
+                    Read some of our favorite articles below, and find out how our services can make a difference!
+                </div><br/>
+
+                <div>
+                    <li>
+                        <a class="news-links" target="_blank" href="https://www.21st.com/auto-insurance-information/understanding-car-insurance-deductibles.htm#:~:text=A%20car%20insurance%20deductible%20is,pay%20%24500%20toward%20the%20repair.">
+                            Understanding Car Insurance Deductibles - 21st Century Insurance
+                        </a>
+                    </li><br/>
+                    
+                    <li>
+                        <a class="news-links" target="_blank" href="https://www.esurance.com/info/car/the-pros-and-cons-of-high-deductibles">
+                            The Pros and Cons of High Deductibles - esurance (An Allstate Company)
+                        </a>
+                    </li><br/>
+                    
+                    <li>
+                        <a class="news-links" target="_blank" href="https://www.driverknowledge.com/car-accident-statistics/">
+                            Know Your Accident Statistics - Driver Knowledge 2020
+                        </a>
+                    </li><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-image">
+        <div class="container" id="footer-card">
+            <div class="card">
+                <div class="card-body" id="footer-card-body">
+                    <div class="row">
+                        <div class="col-md">
+                            <div id="contact-us">
+                                <h1>Contact Us</h1>
+                                <i class="material-icons" style="color:#2b6f94">email</i> contact@membershipdirect.org
+                            </div>
+                        </div>
+        
+                        <div class="col-md">
+                            <div id="quick-resources">
+                                <h1>Quick Resources</h1>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">info</i> Request More Information</li>
+                                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">work</i> Business inquiries</li>
+                                    <li class="list-group-item"><i class="material-icons" style="color:#2b6f94">folder_open</i> Terms & Conditions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br/><br/>
+    </div>
+
+    <!-- Bootstrap Dox Requires Code Placement Here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
 
 </html>
