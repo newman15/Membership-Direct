@@ -26,7 +26,7 @@
         $email = $_POST["email"],
         $password = $_POST["pswd"],
         $phoneNum = $_POST["contact-number"],
-        $memberStatus = 0,
+        $memberStatus = 1,
         $memberType = $_POST["member-selection"],
         $insuranceProvider = $_POST["insur-prov"],
         $policyNum = $_POST["pol-num"],
@@ -117,7 +117,7 @@
         $("#next-btn").hide();
     });
     var payPalPrice = "$memberCost[0]";
-    var paymentReceived = false; // Might use for confirmation page
+    var paymentReceived = false;
       // Fills price on card based on user selection
     paypal.Buttons({
         style: {
@@ -125,7 +125,6 @@
             color: 'gold',
             layout: 'vertical',
             label: 'pay',
-            
         },
         createOrder: function(data, actions) {
             return actions.order.create({
@@ -139,14 +138,18 @@
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
                 alert(details.payer.name.given_name + ', your payment has been processed. Login now!');
+                $("#paypal-button-container").hide();
                 $("#next-btn").show(); // Show button after successful payment
             });
-            paymentReceived = true; // Might use for confirmation page
+            paymentReceived = true;
         }
     }).render('#paypal-button-container');
     </script>
-    <br/><br/>
-    <a href="login-page.php" id="next-btn" class="btn btn-primary btn-md">Continue To Login</a>
+    <div id="next-btn">
+        <br/><h1>Thank you for you payment. Your membership is now active!</h1>
+        <br/><h2>Login now to access your member portal</h2><br/><br/>
+        <a href="login-page.php" id="next-btn" class="btn btn-primary btn-md">Continue To Login</a>
+    </div>
       <br/><br/>
     </body>
     </html>

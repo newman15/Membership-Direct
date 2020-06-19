@@ -25,70 +25,78 @@ Version:    2.0
 
   <style>
     body, html {
-    height: 100%;
-    margin: 0;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
     }
 
     #welcome-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/street_lights_5.jpg");
-    height: 70%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/street_lights_5.jpg");
+        height: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
 
     #road-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/road_2.jpg");
-    height: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/road_2.jpg");
+        height: auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
 
     #footer-image{
-    background-image: url("img/home_page_footer.jpg");
-    height: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+        background-image: url("img/home_page_footer.jpg");
+        height: auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
 
-    #welcome-text p {
-    font-family: 'Roboto Condensed', sans-serif;
-    color: white;
-    letter-spacing: 3px;
-    padding-top: 5%;
+    #welcome-text p{
+        font-family: 'Roboto Condensed', sans-serif;
+        color: white;
+        letter-spacing: 3px;
+        padding-top: 6%;
+        text-align: center;
     }
 
     #welcome-text h2{
-    color: white;
-    font-family: 'Archivo Black', sans-serif;
-    letter-spacing: 3px;
-    padding-top: 5%;
+        color: white;
+        font-family: 'Archivo Black', sans-serif;
+        letter-spacing: 3px;
+        padding-top: 5%;
+        text-align: center;
     }
 
     #login-btn-home {
-    border-color: rgb(252, 252, 252); 
-    border-width: thick;
-    font-size: calc(30% + 1.0rem);
-    margin-top: 8%;
+        text-align: center;
+        font-size: calc(30% + 1.0rem);
+        margin-top: 8%;
+    }
+
+    #login-btn-home a{
+        border-color: rgb(252, 252, 252); 
+        border-width: thick;
     }
 
     #top-link{
-    margin-left: 11%;
-    font-family: 'Varela Round', sans-serif;
-    font-weight: bold;
+        margin-left: 11%;
+        font-family: 'Varela Round', sans-serif;
+        font-weight: bold;
     }
 
     #services{
-    text-align: center;
+        text-align: center;
     }
 
     #accordian-title{
-    text-align: center;
+        text-align: center;
     }
 
     #resp-time, #dir-payment, #easy-portal{
@@ -100,16 +108,16 @@ Version:    2.0
     }
 
     #card-services{
-    margin-top: 8rem;
+        margin-top: 8rem;
     }
 
     #client-container{
-    margin-right: 10px;
+        margin-right: 10px;
     }
 
     #client-text, #news-text{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
     }
 
     #footer-image{
@@ -117,47 +125,72 @@ Version:    2.0
     }
 
     #contact-us{
-    margin-right: 50px;
+        margin-right: 50px;
     }
 
     #info-text{
-    text-align: left;
+        text-align: left;
     }
 
     .more-info{
-    margin-left: 20%;
-    margin-right: 20%;
+        margin-left: 20%;
+        margin-right: 20%;
     }
 
     .card{
-    width: 100%;
+        width: 100%;
     }
 
     .card-header{
-    text-align: center;
+        text-align: center;
     }
 
     .btn{
-    background-color: #2b6f94;
+        background-color: #2b6f94;
     }
 
     .col-sm{
-    padding-top: 6rem;
+        padding-top: 6rem;
     }
 
     .col-md{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .i{
-    color:#2b6f94;
+        color:#2b6f94;
     }
 
     .news-links{
         color: #2b6f94;
         font-size: 1.2rem;
         font-style: italic;
+    }
+
+    /* h1 {
+        font-size: calc(.5em + 2vw);
+    } */
+    h2 {
+        font-size: calc(.6em + 1.6vw);
+    }
+    /* h4 {
+        font-size: calc(.8em + .8vw);
+    } */
+    #welcome-text-small {
+        font-size: calc(.3em + 1.4vw);
+    }
+
+    /* Mobile padding */
+    @media only screen and (max-width: 800px) { 
+        #welcome-image {
+            padding-left:5%;
+            padding-right:5%;
+        }
+
+        #services, #road-image {
+            padding: 0;
+        }
     }
 
   </style>
@@ -172,11 +205,11 @@ Version:    2.0
 
     <!-- Welcome Image -->
     <div class="container-fluid" id="welcome-image">
-        <blockquote class="blockquote text-center" id="welcome-text">
-            <p class="mb-0">ALL INSURED DRIVERS WELCOME</p>
+        <div class="container" id="welcome-text">
+            <p id="welcome-text-small">ALL INSURED DRIVERS WELCOME</p>
             <h2>Our memberships have your back when you expect it the least, but need it the most</h2>
-            <a class="btn btn-primary btn-lg" href="login-page.php" id="login-btn-home">Login</a>
-        </blockquote>
+            <div id="login-btn-home"><a class="btn btn-primary btn-lg" href="login-page.php">Login</a></div><br/><br/>
+        </div>
     </div><br /><br />
 
     <!-- Our Services -->

@@ -154,7 +154,7 @@
                         <div class="card-body">
                             <h4 class="card-title">$firstName,</h4>
                             <p class="card-text">Your next payment is due:</p>
-                            <p class="card-date"><strong>Jan 1, 2020</strong></p>
+                            <p class="card-date"><strong>June 8, 2021</strong></p>
                             <a href="payment.php" class="btn btn-success">Make Payment Now</a>
                         </div>
                     </div>   
