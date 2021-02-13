@@ -1,2 +1,2 @@
 # Membership-Direct
-Web Application
+* Deactivated LAMP application for Membership Direct Team.
