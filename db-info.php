@@ -1,7 +1,7 @@
 <?php
     // Database Connection
     $serverName = "localhost";
-    $dbName = "membership_direct";
+    $dbName = "Enter DB Name Here";
     $userName = "root";
-    $password = "A@n3w1515";
+    $password = "Enter Password Here";
 ?>
